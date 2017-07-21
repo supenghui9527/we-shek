@@ -1,0 +1,33 @@
+/* pages/group/setting/changepwd/changepwd.wxss */
+.changepwd{
+  height: 100%;
+  width: 100%;
+  background: #f0f0f0;
+  box-sizing: border-box;
+  padding:0 40rpx;
+}
+.active{
+  margin-top:40rpx;
+}
+.changepwd input{
+  height:70rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  font-size:30rpx;
+  padding-left:20rpx;
+  margin-bottom: 40rpx;
+}
+.showErr{
+  color:#ff4c34;
+  font-size:30rpx;
+  line-height: 40rpx;
+  margin-bottom:20rpx;
+}
+.btn{
+  background-color:#00bfd6;
+  height:100rpx;
+  border-radius:10rpx;
+  color: #fff;
+  font-size:34rpx;
+  line-height: 100rpx;
+}

@@ -1,0 +1,92 @@
+/* pages/group/mywork/mywork.wxss */
+
+.date {
+  text-align: center;
+  padding: 65rpx 0;
+}
+
+.date image {
+  width: 14rpx;
+  height: 28rpx;
+}
+
+.left {
+  padding-right: 30rpx;
+}
+
+.right {
+  padding-left: 30rpx;
+}
+
+.worklist {
+  width: 100%;
+  padding: 0 25rpx;
+  box-sizing: border-box;
+  height: 140rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.work_date {
+  width: 120rpx;
+  height: 140rpx;
+  line-height: 140rpx;
+  font-size: 70rpx;
+}
+
+.work_date text:nth-child(2) {
+  font-size: 28rpx;
+}
+
+.work_content {
+  width: 570rpx;
+  height: 100%;
+  font-size: 28rpx;
+  background: #ececec;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+
+.complete {
+  color: #586b95;
+}
+
+.nocomplete {
+  color:#586b95;
+}
+
+.status {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15rpx;
+  font-size: 28rpx;
+}
+
+.status text:nth-child(2) {
+  padding-right: 10rpx;
+  color: #586b95;
+}
+
+.content {
+  display: block;
+  width: 550rpx;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  height: 65rpx;
+  overflow: hidden;
+  line-height: 33rpx !important; 
+}
+
+.plus {
+  position: fixed;
+  right: 30rpx;
+  bottom: 250rpx;
+}
+
+.plus image {
+  width: 70rpx;
+  height: 70rpx;
+}

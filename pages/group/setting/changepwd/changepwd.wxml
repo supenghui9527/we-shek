@@ -1,0 +1,9 @@
+<!--pages/group/setting/changepwd/changepwd.wxml-->
+<form class="changepwd" bindsubmit="changepwd">
+  <input hidden="true" type="text" name="orgNumber" value="{{orgNumber}}" />
+  <input class="active" type="password" name="oldPassword" placeholder="请输入旧密码" />
+  <input bindblur="one" type="password" name="newPassword" placeholder="请输入新密码" />
+  <input bindblur="two"  type="password" name="newPassword" placeholder="请再次输入旧密码" />
+  <view hidden="{{!showErr}}" class="showErr">两次密码不一致</view>
+  <button form-type="submit" class="btn">修改</button>
+</form>

@@ -1,0 +1,46 @@
+<import src="../listItem/listItem.wxml" />
+<view class="detail">
+  <!-- 帖子内容详情 -->
+  <view class="detailcontainer">
+    <template is="listItem" data="{{...community}}" />
+    <view wx:if="{{likes!=''}}" class="likesContent">
+      <image src="/images/zan.png"></image>
+      <block wx:for="{{likes}}" wx:key="*this">
+        <text>{{item.orgName}}{{likes.length!=index+1?'、':''}}</text>
+      </block>
+    </view>
+    <view wx:if="{{comment!=''}}" class="commentContent">
+      <image src="/images/talk.png"></image>
+      <view>
+        <block wx:for="{{comment}}" wx:key="*this">
+          <view>
+            <text>{{item.org.orgName}}:</text>
+            <text>{{item.content}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view style="height:200rpx;width:100%"></view>
+  </view>
+  <!-- 评论模块 -->
+  <view hidden="{{show}}" catchtap="showComment" class="fixed"></view>
+  <view hidden="{{show}}" class="writeComment">
+    <input type="text" bindinput="getComment" />
+    <view class="btn" catchtap="saveComment">发送</view>
+  </view>
+  <!-- 底部 -->
+  <view class="footer">
+    <view catchtap="onLikes">
+      <image src="/images/Icon-Hand-Thumbs-Up.png"></image>
+      <text>点赞</text>
+    </view>
+    <view>
+      <image src="/images/share.png"></image>
+      <text>分享</text>
+    </view>
+    <view catchtap="showComment">
+      <image src="/images/Icon-Talk Ellipsis.png"></image>
+      <text>评论</text>
+    </view>
+  </view>
+</view>

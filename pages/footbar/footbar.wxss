@@ -1,0 +1,39 @@
+/* pages/footbar/footbar.wxss */
+.footbar{
+  width:100%;
+  height:100rpx;
+  position:fixed;
+  left: 0;
+  bottom:0;
+  display: flex;
+  border-top:1rpx solid #f0f0f0;
+  background: #ffffff;
+  z-index: 9999;
+}
+.footbar>navigator{
+  width:33.33%;
+  height:100%;
+  text-align: center;
+  line-height: 35rpx;
+  box-sizing: border-box;
+  padding:6rpx 0;
+}
+.footbar navigator text{
+  display: block;
+  font-size:30rpx;
+}
+.home_img{
+  width:52rpx;
+  height:44rpx;
+}
+.data_img{
+  width:42rpx;
+  height:44rpx; 
+}
+.mine_img{
+  width:44rpx;
+  height:44rpx;  
+}
+.cur_color{
+  color:#ca4341 !important;
+}

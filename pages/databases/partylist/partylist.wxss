@@ -1,0 +1,63 @@
+/* pages/databases/partylist/partylist.wxss */
+@import "../../footbar/footbar.wxss";
+.listcontainer{
+  position: relative;
+  height: 100%;
+  width:100%;
+}
+.tab{
+  height:100rpx;
+  width:100%;
+  line-height: 100rpx;
+  background-color:rgb(202,67,65);
+}
+.tab navigator{
+  float:left;
+  width:50%;
+  text-align: center;
+  color:#fff;
+  height:100%;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+.active{
+  border-bottom:6rpx solid #ffffff;
+}
+.arrow{
+  width:21rpx;
+  height:36rpx;
+  padding:20rpx;
+}
+.item_{
+  display: flex;
+  align-items: center;
+}
+.list{
+  height:100%;
+  width:100%;
+  overflow-y: auto;
+  background: #f0f0f0;
+}
+.list_item{
+  width:100%;
+  box-sizing: border-box;
+  padding:0 20rpx;
+  background-color:#f0f0f0;
+}
+.rotate{
+  transform:rotate(90deg);    
+  transform-origin:center center;
+}
+.rotate1{
+  transform:rotate(-90deg);    
+  transform-origin:center center;
+}
+/*.padding-left{
+  padding-left:20rpx;
+}*/
+.nextList{
+  margin-left:51rpx;
+}
+.endList{
+  margin-left:102rpx; 
+}

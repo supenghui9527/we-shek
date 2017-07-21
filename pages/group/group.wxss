@@ -1,0 +1,59 @@
+/* group.wxss */
+@import "../footbar/footbar.wxss";
+.user{
+  width:100%;
+  height:360rpx;
+  background-color: rgb(202,67,65);
+  text-align: center;
+  color: #ffffff;
+}
+.user>view:nth-child(3) navigator{
+  margin-top:25rpx;
+  width:25%;
+  float:left;
+  font-size:30rpx;
+  border-right:1rpx solid #ccc;
+  box-sizing: border-box;
+}
+.user>view:nth-child(3) navigator text{
+  display: block;
+}
+.user>view:nth-child(1){
+  width:100%;
+  text-align: center;
+  height:121rpx;
+  position: relative;
+}
+.avatar{
+  height:100%;
+  width:121rpx;
+  border-radius: 50%;
+}
+.email{
+  position:absolute;
+  width:60rpx;
+  height:60rpx;
+  right:50rpx;
+  top:15rpx;
+}
+.pos_tel{
+  padding:0 30rpx 0 70rpx;
+  width:100%;
+  box-sizing: border-box;
+}
+.pos_tel view,.pos_tel navigator{
+  height:100rpx;
+  font-size:28rpx;
+  color:#000;
+  display: flex;
+  align-items: center;
+  border-bottom:1px solid #f0f0f0;
+}
+.pos_tel view image,.pos_tel navigator image{
+  width: 50rpx;
+  height:50rpx;
+  padding-right:15rpx;
+}
+.border_bottom{
+  border-bottom:10rpx solid #f0f0f0 !important;
+}

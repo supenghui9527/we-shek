@@ -1,0 +1,33 @@
+/* pages/databases/member/edit/edit.wxss */
+.info{
+  padding:0 30rpx;
+  height:100rpx;
+  font-size:32rpx;
+  color:#323232;
+  display: flex;
+  align-items: center;
+  border-bottom:1rpx solid #f0f0f0;
+}
+.info image{
+  width:32rpx;
+  height:30rpx;
+  padding-right:25rpx;
+}
+.info label{
+  border-right:1rpx solid #f0f0f0;
+  width:170rpx;
+}
+.info input{
+  padding-left:30rpx;
+}
+.btn{
+  width:600rpx;
+  height:90rpx;
+  border-radius:10rpx;
+  background-color:#ca4341;
+  line-height: 90rpx;
+  margin:0 auto;
+  color:#fff;
+  text-align: center;
+  margin-top:30rpx;
+}

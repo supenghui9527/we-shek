@@ -1,0 +1,35 @@
+/* pages/group/setting/setting.wxss */
+.set{
+  background: #f0f0f0;
+  height: 100%;
+}
+.info{
+  width:100%;
+  box-sizing: border-box;
+  padding:0 30rpx 0 50rpx;
+  height:90rpx;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-bottom: 3px solid #f0f0f0;
+  justify-content: space-between;
+  color:#323232;
+}
+.info image{
+  width:21rpx;
+  height:30rpx;
+}
+.btn{
+  position: absolute;
+  left: 50%;
+  margin-left: -250rpx;
+  bottom:130rpx;
+  width:500rpx;
+  height:100rpx;
+  font-size:32rpx;
+  color:#fff;
+  text-align: center;
+  line-height: 100rpx;
+  border-radius: 10rpx;
+  background:#54a6df;
+}

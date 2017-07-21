@@ -1,0 +1,49 @@
+<!--databases.wxml-->
+<import src="../footbar/footbar.wxml" />
+<!--添加党员-->
+<view catchtap="addmember" class="add">
+  <image src="/images/btn1.png"></image>
+</view>
+<!--搜索内容-->
+<view hidden="{{!searchShow}}" class="searchList">
+  <block wx:for="{{newGroups}}" wx:for-item="user" wx:key="*this">
+    <view data-userID="{{user.userID}}" data-idNum="{{user.idNum}}" data-position="{{user.position}}" data-joinDate="{{user.joinDate}}" data-gender="{{user.gender}}" data-tel="{{user.tel}}" data-username="{{user.username}}" catchtap="goUser" class="user">{{user.username}}</view>
+  </block>
+</view>
+<!--党员和党组织切换-->
+<view>
+  <view class="tab clearfix">
+    <navigator class="active">党员</navigator>
+    <navigator open-type="redirect" url="/pages/databases/partylist/partylist">党组织</navigator>
+  </view>
+  <!--搜索框-->
+  <view class="search">
+    <image class="search_btn" src="/images/search.png"></image>
+    <input confirm-type="search" bindinput="search" type="text" placeholder="请输入姓名或者手机号进行搜索" />
+  </view>
+</view>
+<!--党员列表显示-->
+<view class="flex box box-lr">
+  <scroll-view class="flex groups box box-tb" scroll-y="true" scroll-into-view="{{scrollIntoView}}">
+    <block wx:for="{{groups}}" wx:key="*this" wx:for-item="group">
+      <view class="flex" id="{{index}}">
+        <view class="group-name">{{index}}</view>
+        <view class="flex group-users">
+          <view data-userID="{{user.userID}}" data-idNum="{{user.idNum}}" data-position="{{user.position}}" data-joinDate="{{user.joinDate}}" data-gender="{{user.gender}}" data-tel="{{user.tel}}" data-username="{{user.username}}" catchtap="goUser" wx:for="{{group}}"
+            wx:key="*this" wx:for-item="user" wx:for-index="idx" class="user box box-lr user_detail">
+            <view wx:if="{{showDel}}" catchlongtap="del" class="del">删除</view>
+            <view class="flex user-name">{{user.username}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  <!--<image catchtap="goframework" class="architecture" src="/images/jiagou.png"></image>-->
+  <!--26个字母跳转-->
+  <view hidden="{{searchShow}}" class="nav box box-tb" bindtouchmove="touchmove" bindtouchcancel="touchcancel" bindtouchend="touchend">
+    <view bindtap="tabLetter" wx:key="*this" data-index="{{item}}" wx:for="{{letters}}" class="flex box box-align-center box-pack-center letter">
+      <text class="letter-text {{selected == item ? 'letter-actived' : ''}}">{{item}}</text>
+    </view>
+  </view>
+</view>
+<template is="footbar" data="{{...footbar}}"></template>

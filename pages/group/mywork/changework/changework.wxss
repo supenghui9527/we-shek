@@ -1,0 +1,115 @@
+/* pages/group/mywork/changework/changework.wxss */
+form{
+  padding:0 20rpx;
+}
+.title{
+  height: 100rpx;
+  align-items: center;
+}
+.title input{
+  width:500rpx;
+}
+input,textarea{
+  color:#868686;
+  font-size:30rpx;
+}
+.status,.content{
+  padding-top:20rpx;
+  display: flex;
+}
+textarea{
+  padding-top:5rpx;
+  box-sizing: border-box;
+}
+.title label,.content label,.status text:nth-child(1){
+  color:#646464;
+  font-size:36rpx;
+  width:90rpx;
+}
+.content label{
+  height: 36rpx;
+}
+.title,.content{
+  display: flex;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.btn{
+  width:600rpx;
+  height:90rpx;
+  border-radius:10rpx;
+  background-color:#c1403e;
+  line-height: 90rpx;
+  margin:0 auto;
+  color:#fff;
+  text-align: center;
+  margin-top:30rpx;
+}
+.status text:nth-child(2){
+  color:#586b95;
+  font-size: 32rpx;
+}
+.fixed{
+  width:100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color:rgba(0,0,0,0.5);
+}
+.changeStatus{
+  width:600rpx;
+  height: 450rpx;
+  position: absolute;
+  top:50%;
+  left:50%;
+  margin-top:-225rpx;
+  margin-left: -300rpx;
+  background-color:#fff;
+  border-radius:8rpx;
+}
+.options text{
+  display: block;
+  width:500rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 32rpx;
+  color:#646464;
+  border: 1rpx solid #868686;
+  border-radius: 16px;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+}
+.options text:nth-child(1){
+  margin-top:40rpx;
+}
+.active{
+  border:1rpx solid #93daf8 !important;
+  background: #d3f2ff;
+}
+.changeStatus input{
+  width:450rpx;
+  margin: 0 auto;
+  border:1rpx solid  #f0f0f0;
+}
+.sure{
+  width:500rpx;
+  margin: 0 auto;
+  display: flex;
+  margin-top:30rpx;
+}
+.sure text{
+  display: block;
+  width: 50%;
+  box-sizing: border-box;
+  font-size: 32rpx;
+  text-align: center;
+}
+.sure text:nth-child(1){
+  border-right:1rpx solid #f0f0f0;
+  color:#646464;
+}
+.sure text:nth-child(2){
+  color:#c1403e;
+}

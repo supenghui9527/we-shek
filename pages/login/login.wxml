@@ -1,0 +1,15 @@
+<!--login.wxml-->
+<view class="login">
+  <image class="logo" src="/images/logo.png"></image>
+  <text>党建社区登录</text>
+  <view class="usercontainer">
+    <image src="/images/user.png"></image>
+    <input bindinput="getUser" class="user" type="text" placeholder="请输入帐号" />
+  </view>
+  <view class="usercontainer">
+    <image src="/images/pwd.png"></image>
+    <input class="pwd" bindinput="getPwd" type="password" placeholder="请输入密码" />
+  </view>
+  <view hidden="{{err==null}}" class="err">{{err}}</view>
+  <view class="btn" bindtap="onLogin">登录</view>
+</view>

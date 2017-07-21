@@ -1,0 +1,35 @@
+<!--pages/databases/member/edit/edit.wxml-->
+<form bindsubmit="onSave">
+  <view class="info">
+    <image src="/images/name.png"></image>
+    <label>姓名</label>
+    <input type="text" name="userName" value="{{userName}}" />
+  </view>
+  <input type="text" hidden="true" name="userID" value="{{userID}}" />
+  <view class="info">
+    <image src="/images/male.png"></image>
+    <label>性别</label>
+    <input type="text" name="gender" value="{{gender}}" maxlength="1" />
+  </view>
+  <view class="info">
+    <image src="/images/phone.png"></image>
+    <label>联系方式</label>
+    <input type="number" name="tel" maxlength="11" value="{{tel}}" />
+  </view>
+  <view class="info">
+    <image src="/images/time.png"></image>
+    <label>入党时间</label>
+    <input type="text" name="joinDate" value="{{joindate}}" />
+  </view>
+  <view class="info">
+    <image src="/images/card.png"></image>
+    <label>身份证号</label>
+    <input type="idcard" name="idNum" maxlength="18" value="{{idNum}}" />
+  </view>
+  <view class="info">
+    <image src="/images/job.png"></image>
+    <label>党内职务</label>
+    <input type="text" name="position" value="{{position}}" />
+  </view>
+  <button class="btn" formType="submit">保存</button>
+</form>

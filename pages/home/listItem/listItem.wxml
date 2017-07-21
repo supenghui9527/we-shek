@@ -1,0 +1,71 @@
+<!--pages/home/listItem/listItem.wxml-->
+<template name="listItem">
+  <view data-type="{{cType}}" data-cid="{{cID}}" catchtap="{{isDetail?'goDetail':''}}" class="listItem">
+    <view data-higherOrgID="{{org.higherOrgID}}" data-orgID="{{org.orgID}}" catchtap="gopartydetail" class="user clearfix">
+      <image src="{{org.headThumb==null?'/images/people.png':org.headThumb}}"></image>
+      <view class="depart">
+        <text>{{org.orgName}}</text>
+        <text>{{createTime}}</text>
+      </view>
+      <text class="type">{{type[meetingType]}}</text>
+    </view>
+    <view class="content">
+      <view wx:if="{{cType==0}}">
+        <view class="time clearfix">
+          <view>
+            <text>时间</text>
+            <text>{{meetingTime==null?'':meetingTime}}</text>
+          </view>
+          <view>
+            <text>主持</text>
+            <text>{{preside==null?'':preside}}</text>
+          </view>
+        </view>
+        <view class="time clearfix">
+          <view>
+            <text>应到</text>
+            <text>{{shouldAttendance==null?'0':shouldAttendance}}人</text>
+          </view>
+          <view>
+            <text>实到</text>
+            <text>{{actuaAttendance==null?'0':actuaAttendance}}人</text>
+          </view>
+        </view>
+        <view class="subject">
+          <text>主题</text>
+          <text>{{title}}</text>
+        </view>
+      </view>
+      <view class="font {{isDetail?'text':''}}">{{content}}</view>
+      <view class="image_container" style="{{picNames==null?'padding:0':''}}">
+        <block wx:for="{{picNames}}" wx:for-index="idx" wx:key="*this" >
+          <image data-img="{{picNames}}" data-imgUrl="{{thumbnailPic}}" mode="aspectFill" catchtap="showBigPic" wx:if="{{picNames.length===1}}" class="imageOne" src="{{thumbnailPic+item}}"></image>
+          <image data-imgUrl="{{thumbnailPic}}" data-img="{{picNames}}" mode="aspectFill" catchtap="showBigPic" wx:elif="{{picNames.length>1&&picNames.length<=4}}" class="imageTwo" src="{{thumbnailPic+item}}"></image>
+          <image data-img="{{picNames}}" data-imgUrl="{{thumbnailPic}}" mode="aspectFill" catchtap="showBigPic" wx:elif="{{picNames.length>4}}" class="imageThree {{(idx+4)%3==2?'img-border':''}}" src="{{thumbnailPic+item}}"></image>
+        </block>
+      </view>
+      <!-- 点赞评论模块 -->
+      <view class="reviews">
+        <text class="{{isDetail?'pot':''}}">{{meetingLocation==null?geo:meetingLocation}}</text>
+        <view wx:if="{{isDetail}}">
+          <view catchtap="onLikes" data-cid="{{cID}}" class="likes">
+            <image src="/images/zan.png"></image>
+            <text>{{likeCount==null?'0':likeCount}}</text>
+          </view>
+          <!--<view data-cid="{{cID}}" class="share">
+            <image src="/images/eport.png"></image>
+            <text>{{repostCount}}</text>
+          </view>-->
+          <view data-cid="{{cID}}" class="comment">
+            <image src="/images/talk.png"></image>
+            <text>{{commentCount==null?'0':commentCount}}</text>
+          </view>
+        </view>
+        <!-- 删除帖子 -->
+        <view catchtap="delPublish" wx:if="{{!isDetail&&userID==org.orgID}}">
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

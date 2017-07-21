@@ -1,0 +1,32 @@
+<!--pages/databases/partylist/partylist.wxml-->
+<import src="../../footbar/footbar.wxml" />
+<view class="tab clearfix">
+  <navigator open-type="redirect" url="/pages/databases/databases">党员</navigator>
+  <navigator class="active">党组织</navigator>
+</view>
+<view class="list">
+  <block wx:for="{{listData}}" wx:key="*this" wx:for-index="first" wx:for-item="firstItem">
+    <view class="list_item">
+      <view class="item_">
+        <image data-index="{{first}}" catchtap="firstList" class="arrow {{firstIndex==first?'rotate':''}}" src="/images/right.png"></image>
+        <text catchtap="gopartydetail" data-orgID="{{firstItem.orgID}}" data-higherOrgID="{{firstItem.higherOrgID}}" class="padding-left">{{firstItem.orgName}}</text>
+      </view>
+      <block wx:if="{{next!=''&&first==firstIndex}}" wx:for="{{next}}" wx:key="*this" wx:for-item="nextItem" wx:for-index="nextIdx">
+        <view>
+          <view hidden="{{next==''}}" class="nextList item_">
+            <image data-first="{{first}}" data-next="{{nextIdx}}" hidden="{{nextItem.children==''}}" catchtap="nextList" class="arrow {{nextIndex==nextIdx?'rotate':''}}" src="/images/right.png"></image>
+            <text catchtap="gopartydetail" data-orgID="{{nextItem.orgID}}" data-higherOrgID="{{nextItem.higherOrgID}}" style="{{nextItem.children==''?'padding-left:51rpx':''}}" class="padding-left">{{nextItem.orgName }}</text>
+          </view>
+          <block wx:if="{{end!=''&&nextIdx==nextIndex}}" wx:for="{{end}}" wx:key="*this" wx:for-item="endItem">
+            <view hidden="{{end==''}}" class="endList item_">
+              <image data-name="{{endItem.orgName }}" hidden="{{endItem.children==''}}" catchtap="endList" class="arrow {{endItem.orgName ==endName?'rotate':''}}" src="/images/right.png"></image>
+              <text catchtap="gopartydetail" data-orgID="{{endItem.orgID}}" data-higherOrgID="{{endItem.higherOrgID}}" style="{{nextItem.children==''?'padding-left:51rpx':''}}" class="padding-left">{{endItem.orgName }}</text>
+            </view>
+          </block>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>
+<view style="height:120rpx;width:100%"></view>
+<template is="footbar" data="{{...footbar}}"></template>

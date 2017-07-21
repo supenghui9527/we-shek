@@ -1,0 +1,32 @@
+<!--pages/group/mywork/changework/changework.wxml-->
+<form bindsubmit="changework">
+  <input hidden="true" name="workID" value="{{workID}}" />
+  <view class="title">
+    <label>主题</label>
+    <input focus="{{focus}}" name="workTitle" value="{{workTitle}}" disabled="{{edit}}" />
+  </view>
+  <view class="content">
+    <label>内容</label>
+    <textarea name="workContent" value="{{workContent}}" disabled="{{edit}}" />
+  </view>
+  <view class="status">
+    <text>状态</text>
+    <text catchtap="show" wx:if="{{workStatus==1}}">进行中</text>
+    <text catchtap="show" wx:elif="{{workStatus==3}}">未完成</text>
+    <text catchtap="show" wx:elif="{{workStatus==2}}">已完成</text>
+  </view>
+  <button form-type="submit" catchtap="edit" class="btn">{{btnTxt}}</button>
+</form>
+<!-- 更改工作状态模块 -->
+<view catchtap="noChange" class="fixed" hidden="{{showChange}}">
+  <view catchtap="show" class="changeStatus">
+    <view class="options">
+      <text catchtap="changeWork" data-status="{{item.workStatus}}" class="{{item.workStatus==workStatus?'active':''}}" wx:for="{{options}}" wx:key="*this">{{item.text}}</text>
+    </view>
+    <input bindinput="getReason" disabled="{{workStatus!==3}}" type="text" placeholder="未完成原因" />
+    <view class="sure">
+      <text catchtap="sureChange">确定</text>
+      <text catchtap="noChange">取消</text>
+    </view>
+  </view>
+</view>

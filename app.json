@@ -1,0 +1,29 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/group/mywork/mywork",
+    "pages/group/addwork/addwork",
+    "pages/databases/databases",
+    "pages/databases/member/member",
+    "pages/group/message/message",
+    "pages/home/home",
+    "pages/databases/addmember/addmember",
+    "pages/group/group",
+    "pages/group/setting/changeinfo/changeinfo",
+    "pages/group/setting/changepwd/changepwd",
+    "pages/group/setting/setting",
+    "pages/group/mywork/changework/changework",
+    "pages/databases/detail/detail",
+    "pages/databases/partylist/partylist",
+    "pages/home/publish/publish",
+    "pages/databases/member/edit/edit",
+    "pages/group/myPublish/myPublish",
+    "pages/home/detail/detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f0f0f0",
+    "navigationBarTextStyle": "#ffffff",
+    "enablePullDownRefresh": false
+  }
+}

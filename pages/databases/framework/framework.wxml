@@ -1,0 +1,4 @@
+<!--pages/databases/framework/framework.wxml-->
+<view class="framework">
+  <view class="superior"></view>
+</view>

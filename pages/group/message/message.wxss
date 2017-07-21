@@ -1,0 +1,113 @@
+/* pages/group/message/message.wxss */
+
+.message {
+  height: 100%;
+  width: 100%;
+  background: #f0f0f0;
+}
+
+.messageList {
+  display: flex;
+  margin-bottom: 1rpx;
+  background: #fff;
+  font-size: 30rpx;
+  color: #323232;
+  padding: 30rpx;
+  justify-content: space-around;
+}
+
+.messageList .reason view text {
+  display: block;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  max-width: 350rpx;
+  overflow: hidden;
+}
+.messageList .reason view:nth-child(1){
+  width:350rpx;
+}
+.messageList .reason {
+  display: flex;
+  justify-content: space-between;
+  width: 550rpx;
+  line-height: 60rpx;
+}
+
+.avatar {
+  width: 121rpx;
+  height: 121rpx;
+  border-radius: 50%;
+}
+
+.fixed {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size:30rpx;
+}
+
+.detail {
+  width: 600rpx;
+  height: 560rpx;
+  background: #fff;
+  border-radius: 10rpx;
+}
+
+.detail>text {
+  display: block;
+  text-align: center;
+}
+
+.title {
+  font-size: 50rpx;
+  padding:40rpx 0 30rpx 0;
+}
+
+.join_data {
+  width: 390rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid #f0f0f0;
+  border-top: 1rpx solid #f0f0f0;
+  padding: 30rpx 0 10rpx 0;
+}
+
+.position,.agree,.delreason {
+  width: 390rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid #f0f0f0;
+  padding: 30rpx 0 10rpx 0;
+}
+.padding-right{
+  padding-right:80rpx;
+}
+.delreason{
+  color:#818181;
+}
+.agree{
+  border:none !important;
+  display: flex;
+}
+.agree text{
+  width:50%;
+  box-sizing:border-box;
+  text-align: center;
+}
+.agree text:nth-child(1){
+  border-right:1rpx solid #f0f0f0;
+}
+.agree text:nth-child(2){
+  color:#ca4341;
+}
+.orgname{
+  padding-bottom:10rpx;
+  color:#818181;
+}

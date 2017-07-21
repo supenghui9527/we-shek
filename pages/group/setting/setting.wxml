@@ -1,0 +1,12 @@
+<!--pages/group/setting/setting.wxml-->
+<view class="set">
+  <view catchtap="set" class="info">
+    <text>信息修改</text>
+    <image src="/images/right.png"></image>
+  </view>
+  <view catchtap="goSetpwd" class="info">
+    <text>密码修改</text>
+    <image src="/images/right.png"></image>
+  </view>
+  <view catchtap="signOut" class="btn">退出当前账号</view>
+</view>

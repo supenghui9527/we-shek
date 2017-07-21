@@ -1,0 +1,56 @@
+<!--group.wxml-->
+<import src="../footbar/footbar.wxml" />
+<view class="user">
+  <view>
+    <image catchtap="changeAvatar" class="avatar" src="{{datas.orgBean.headThumb==null?'/images/people.png':datas.orgBean.headThumb}}"></image>
+    <image catchtap="gomessage" class="email" src="/images/email.png"></image>
+  </view>
+  <view style="margin-top:15rpx">
+    <text>{{datas.orgBean.orgName}}</text>
+  </view>
+  <view>
+    <navigator url="/pages/databases/databases">
+      <text>{{datas.DangYuan}}</text>
+      <text>党员</text>
+    </navigator>
+    <navigator url="/pages/databases/databases">
+      <text>{{datas.DangGW}}</text>
+      <text>党工委</text>
+    </navigator>
+    <navigator url="/pages/databases/databases">
+      <text>{{datas.DangW}}</text>
+      <text>党委</text>
+    </navigator>
+    <navigator style="border:none" url="/pages/databases/databases">
+      <text>{{datas.DangZB}}</text>
+      <text>党支部</text>
+    </navigator>
+  </view>
+</view>
+<view class="pos_tel">
+  <view catchtap="goToMap" data-lat="{{datas.orgBean.lat}}" data-lng="{{datas.orgBean.lng}}">
+    <image src="/images/dizhi_blue.png"></image>
+    <text>{{datas.orgBean.orgAddress}}</text>
+  </view>
+  <view class="border_bottom">
+    <image src="/images/phone_color.png"></image>
+    <text data-phonenub="{{datas.orgBean.contactTel}}" catchtap="calling">{{datas.orgBean.contactTel}}</text>
+  </view>
+  <view catchtap="goMypublish">
+    <image src="/images/text.png"></image>
+    <text>我的三会E课</text>
+  </view>
+  <view catchtap="goMywork">
+    <image src="/images/my_date.png"></image>
+    <text>我的近期工作</text>
+  </view>
+  <view catchtap="showPrompt" class="border_bottom">
+    <image src="/images/stat.png"></image>
+    <text>我的积分</text>
+  </view>
+  <view catchtap="set">
+    <image src="/images/set.png"></image>
+    <text>设置</text>
+  </view>
+</view>
+<template is="footbar" data="{{...footbar}}"></template>

@@ -1,0 +1,27 @@
+<!--pages/group/mywork/mywork.wxml-->
+<!--我的近期工作查询-->
+<view class="date">
+  <image class="left" catchtap="left" src="/images/icon_triangle_right-.png"></image>
+  <text>{{date}}</text>
+  <image class="right" catchtap="right" src="/images/icon-_riangle-_left.png"></image>
+</view>
+<!--我的近期工作列表-->
+<view catchtap="goDetail" data-workStatus="{{item.workStatus}}" data-title="{{item.workTitle}}" data-content="{{item.workContent}}" data-workID ="{{item.workID}}" wx:for="{{myworks}}" wx:key="*this" class="worklist">
+  <view class="work_date">
+    <text>{{item.workeDate}}</text>
+    <text>日</text>
+  </view>
+  <view class="work_content">
+    <text class="content">{{item.workTitle}}</text>
+    <view class="status">
+      <text wx:if="{{item.workStatus==1}}" class="nocomplete">进行中</text>
+      <text wx:elif="{{item.workStatus==3}}" class="nocomplete">未完成</text>
+      <text wx:elif="{{item.workStatus==2}}" class="nocomplete">已完成</text>
+      <text data-workID ="{{item.workID}}" catchtap="delWork">删除</text>
+    </view>
+  </view>
+</view>
+<!--添加我的近期工作-->
+<view catchtap="addwork" class="plus">
+  <image src="/images/btn1.png"></image>
+</view>

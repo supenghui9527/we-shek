@@ -1,0 +1,60 @@
+<!--publishOne.wxml-->
+<view class="publishOne">
+  <form bindsubmit="save">
+    <input name="orgID" value="{{userID}}" hidden="true" />
+    <input name="cType" value="{{posttype}}" hidden="true" />
+    <input hidden="true" wx:if="{{posttype==0}}" name="meetingTime" value="{{date}}"/>
+    <input wx:if="{{posttype==0}}" name="meetingType" value="{{meettype}}" hidden="true" />
+    <input name="{{posttype==0?'geo':'meetingLocation'}}" value="" hidden="true" />
+    <view wx:if="{{posttype==0}}">
+      <view class="tab">
+        <text catchtap="chose" data-index="{{index}}" wx:for="{{type}}" wx:key="*this" class="{{index===meettype?'active':''}}">{{item}}</text>
+      </view>
+      <picker class="datecontainer" mode="date" value="{{date}}" start="2017-6-01" end="2080-09-01" bindchange="bindDateChange">
+        <view class="date">{{date}}</view>
+      </picker>
+      <view class="datecontainer">
+        <label class="host"></label>
+        <input name="preside" type="text" placeholder="主持人" />
+      </view>
+      <view class="datecontainer come">
+        <label></label>
+        <view style="border-right:1rpx solid #f0f0f0" class="">
+          <text>应到</text>
+          <input name="shouldAttendance" type="text" />
+          <text>人</text>
+        </view>
+        <view class="">
+          <text style="padding-left:20rpx">实到</text>
+          <input name="actuaAttendance" type="text" />
+          <text>人</text>
+        </view>
+      </view>
+      <view class="datecontainer">
+        <label class="subject"></label>
+        <input name="title" type="text" placeholder="主题" />
+      </view>
+    </view>
+    <view class="content">
+      <textarea name="content" placeholder="活动内容..." />
+      <!--<image class="microphone" src="/images/microphone.png"></image>-->
+      <view class="imgcontainer">
+        <block wx:for="{{tempFilePaths}}" wx:key="*this">
+          <view class="up">
+            <image data-index="{{index}}" catchtap="delPictrue" class="del" src="/images/del.png"></image>
+            <image aspectFill src="{{item}}"></image>
+          </view>
+        </block>
+        <image hidden="{{tempFilePaths==''}}" catchtap="upLoad" class="plus" src="/images/plus.png"></image>
+      </view>
+      <image catchtap="upLoad" class="picture" src="/images/picture.png"></image>
+    </view>
+    <view class="datecontainer">
+      <label class="postion"></label>
+      <input type="text" name="{{posttype==1?'geo':'meetingLocation'}}" placeholder="地址..." />
+    </view>
+    <view class="btn">
+      <button class="save" formType="submit">发布</button>
+    </view>
+  </form>
+</view>

@@ -1,0 +1,20 @@
+<!--pages/group/setting/changeinfo/changeinfo.wxml-->
+<form bindsubmit="onSave">
+  <input type="text" hidden="true" name="orgID" value="{{orgID}}" />
+  <input type="text" hidden="true" name="secretary" value="{{secretary}}" />
+  <input type="text" hidden="true" name="secretaryTel" value="{{secretaryTel}}" />
+  <input type="text" hidden="true" name="ontactPosition" value="{{ontactPosition}}" />
+  <view class="info">
+    <label>组织名称</label>
+    <input type="text" name="username" value="{{orgName}}" />
+  </view>
+  <view class="info">
+    <label>联系人</label>
+    <input type="text" name="username" value="{{contactName}}" />
+  </view>
+  <view class="info">
+    <label>联系方式</label>
+    <input type="text" name="username" value="{{contactTel}}" />
+  </view>
+  <button class="btn" formType="submit">保存</button>
+</form>

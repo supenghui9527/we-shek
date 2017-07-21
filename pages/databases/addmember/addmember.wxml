@@ -1,0 +1,41 @@
+<!--pages/databases/addmember/addmember.wxml-->
+<view hidden="{{!showErr}}" class="fixed">
+  <view class="showErr">姓名、入党时间和身份证号不能为空</view>
+</view>
+<form bindsubmit="onSave">
+  <input type="text" name="joinDate" hidden="true" value="{{date}}" />
+  <view class="info">
+    <image src="/images/name.png"></image>
+    <label>姓名</label>
+    <input type="text" name="username" placeholder="请输入姓名" />
+  </view>
+  <input type="text" hidden="true" name="orgID" value="{{orgID}}" />
+  <view class="info">
+    <image src="/images/male.png"></image>
+    <label>性别</label>
+    <input type="text" name="gender" placeholder="性别" maxlength="1" />
+  </view>
+  <view class="info">
+    <image src="/images/phone.png"></image>
+    <label>联系方式</label>
+    <input type="number" name="tel" maxlength="11" placeholder="请输入联系方式" />
+  </view>
+  <view class="info">
+    <image src="/images/time.png"></image>
+    <label>入党时间</label>
+    <picker class="datecontainer" mode="date" value="{{date}}" start="1900-6-01" end="2080-09-01" bindchange="bindDateChange">
+      <view class="date">{{date}}</view>
+    </picker>
+  </view>
+  <view class="info">
+    <image src="/images/card.png"></image>
+    <label>身份证号</label>
+    <input type="idcard" name="idNum" maxlength="18" placeholder="请输入身份证号" />
+  </view>
+  <view class="info">
+    <image src="/images/job.png"></image>
+    <label>党内职务</label>
+    <input type="text" name="position" placeholder="党内职务" />
+  </view>
+  <button class="btn" formType="submit">保存</button>
+</form>

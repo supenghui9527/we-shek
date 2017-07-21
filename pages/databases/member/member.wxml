@@ -1,0 +1,44 @@
+<!--pages/databases/member/member.wxml-->
+<view class="user">
+  <view>
+    <text>{{surname}}</text>
+  </view>
+  <view>
+    <text>{{username}}</text>
+  </view>
+  <view>
+    <text>{{orgName}}</text>
+  </view>
+  <view>
+    <image catchtap="text" src="/images/message.png"></image>
+    <image catchtap="call" src="/images/telephone.png"></image>
+    <image catchtap="saveTel" src="/images/tongxunlu.png"></image>
+  </view>
+</view>
+<view class="userinfo">
+  <text>性别</text>
+  <text>{{gender}}</text>
+</view>
+<view class="userinfo">
+  <text>电话</text>
+  <text class="tel">{{tel}}</text>
+</view>
+<view class="userinfo">
+  <text>入党时间</text>
+  <text>{{joindate}}</text>
+</view>
+<view class="userinfo">
+  <text>党内职务</text>
+  <text>{{position}}</text>
+</view>
+<view catchtap="hideDel" wx:if="{{delShow}}" class="delcontainer">
+  <view catchtap="noHide" class="del">
+    <textarea bindinput="reason" placeholder="请输入删除理由..." maxlength="20" />
+    <view class="agree">
+      <text bindtap="agree">确认</text>
+      <text bindtap="hideDel">取消</text>
+    </view>
+  </view>
+</view>
+<view catchtap="goEdit" class="btn">编辑</view>
+<view catchtap="showDel" class="btn">删除</view>

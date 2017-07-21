@@ -1,0 +1,28 @@
+<!--pages/group/myPublish/myPublish.wxml-->
+<block wx:for="{{myworks}}" wx:key="*this">
+  <view data-cType="{{item.cType}}" data-cid="{{item.cID}}" catchtap="godetail" class="list_item clearfix">
+    <view>
+      <text class="day">{{item.day}}</text>
+      <text>{{item.month}}</text>
+    </view>
+    <view>
+      <image src="{{item.thumbnailPic+item.picNames[0]}}"></image>
+    </view>
+    <view>
+      <text class="content">{{item.content}}</text>
+      <view class="operate">
+        <text class="type">{{types[meetingType]}}</text>
+        <view class="operate">
+          <view class="likes">
+            <image src="/images/zan.png"></image>
+            <text>{{item.likeCount==null?'0':item.likeCount}}</text>
+          </view>
+          <view class="comment">
+            <image src="/images/talk.png"></image>
+            <text>{{item.commentCount==null?'0':item.commentCount}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>

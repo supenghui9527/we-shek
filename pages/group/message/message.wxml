@@ -1,0 +1,39 @@
+<!--pages/group/message/message.wxml-->
+<view class="message">
+  <view wx:for="{{datas}}" wx:key="*this">
+    <view catchtap="showMessage" data-index="{{index}}" class="messageList">
+      <image class="avatar" src="{{item.org.headThumb}}"></image>
+      <view class="reason">
+        <view>
+          <text>{{item.msgContent}}</text>
+          <text>{{item.reason}}</text>
+        </view>
+        <view>
+          <text>{{item.msgCreateTime}}</text>
+          <text data-msgID="{{item.msgID}}" catchtap="delMessage">删除</text>
+        </view>
+      </view>
+    </view>
+    <view catchtap="hideMessage" wx:if="{{index===messageIndex}}" class="fixed">
+      <view catchtap="noHide" class="detail">
+        <text class="title">{{item.msgTitle}}</text>
+        <text class="orgname">{{item.org.orgName}}</text>
+        <view class="join_data">
+          <text class="padding-right">入党时间</text>
+          <text>{{item.msgCreateTime}}</text>
+        </view>
+        <view class="position">
+          <text class="padding-right">党内职务</text>
+          <text>{{item.org.contactPosition}}</text>
+        </view>
+        <view class="delreason">
+          <text>{{item.reason}}</text>
+        </view>
+        <view class="agree">
+          <text data-agree="1" data-msgID="{{item.msgID}}" data-userID="{{item.userID}}" catchtap="agree">同意</text>
+          <text data-agree="2" data-msgID="{{item.msgID}}" data-userID="{{item.userID}}" catchtap="agree">拒绝</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,11 @@
+<!--pages/group/addwork/addwork.wxml-->
+<form bindsubmit="addwork">
+  <view>
+    <label><image src="/images/zhuti.png"></image></label>
+    <input type="text" placeholder="主题..." name="workTitle" />
+  </view>
+  <view>
+    <textarea placeholder="活动内容..." name="workContent" />
+  </view>
+  <button form-type="submit" class="btn">添加</button>
+</form>

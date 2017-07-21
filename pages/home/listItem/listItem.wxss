@@ -1,0 +1,130 @@
+/* pages/home/listItem/listItem.wxss */
+.listItem{
+  width: 100%;
+  padding:0 35rpx 0 25rpx;
+  box-sizing: border-box;
+  border-bottom:1rpx solid #f0f0f0;
+  padding-bottom: 25rpx;
+}
+.user{
+  padding-top:15rpx;
+  padding-bottom:15rpx;
+}
+.user image{
+  width:90rpx;
+  height:90rpx;
+  border-radius:50%;
+}
+.depart,.user image{
+  float:left;
+}
+.depart{
+  padding-top:15rpx;
+  line-height: 40rpx;
+  padding-left:20rpx;
+}
+.depart text{
+  display: block;
+}
+.depart text:nth-child(1){
+  font-size:28rpx;
+  color:#586b95;
+}
+.depart text:nth-child(2),.type{
+  font-size:28rpx;
+  color:#a6a6a6;
+}
+.type{
+  float:right;
+  font-size:24rpx;
+  padding-top: 54rpx;
+}
+.content{
+  padding-left:110rpx;
+  line-height: 40rpx;
+}
+.time,.subject,.font{
+  width:100%;
+  font-size: 28rpx;
+  color:#474747;
+}
+.text{
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  max-height: 120rpx;
+  overflow: hidden;
+}
+.time view:nth-child(1){
+  width:240rpx;
+}
+.time view:nth-child(1),.time view:nth-child(2){
+  min-width: 150rpx;
+  float: left;
+}
+.time view:nth-child(2){
+  padding-left:100rpx;
+}
+.time view:nth-child(1) text:nth-child(1),.time view:nth-child(2) text:nth-child(1){
+  padding-right:20rpx;
+}
+.subject text:nth-child(1){
+  padding-right:20rpx;
+}
+.image_container{
+  display: flex;
+  /*justify-content:space-around;*/
+  flex-wrap:wrap;
+  padding:15rpx 0 15rpx 10rpx;
+}
+.imageOne{
+  width:400rpx;
+  height:400rpx;
+}
+.imageOne,.imageTwo,.imageThree{
+  margin-bottom: 6rpx;
+}
+.imageTwo{
+  width:250rpx;
+  height:250rpx;
+  padding-right: 6rpx;
+}
+.imageThree{
+  width:180rpx;
+  height:180rpx;
+}
+.img-border{
+  border-right: 6rpx solid #fff;
+  border-left: 6rpx solid #fff;
+}
+.reviews{
+  font-size: 26rpx;
+  display: flex;
+  color:#818181;
+  justify-content:space-between;
+}
+.reviews view{
+  display:flex;
+}
+.likes,.share,.comment{
+  padding-left:35rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  display: flex;
+  align-items: center;
+}
+.reviews view image{
+  width:26rpx;
+  height:26rpx;
+  padding-right:10rpx;
+  vertical-align: middle;
+}
+.pot{
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  max-width: 410rpx;
+  overflow: hidden;
+}
