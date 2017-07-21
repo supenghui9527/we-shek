@@ -7,7 +7,7 @@
         <text>{{org.orgName}}</text>
         <text>{{createTime}}</text>
       </view>
-      <text class="type">{{type[meetingType]}}</text>
+      <text class="type">{{cType!=1?type[meetingType]:'党日活动'}}</text>
     </view>
     <view class="content">
       <view wx:if="{{cType==0}}">

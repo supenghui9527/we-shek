@@ -11,18 +11,18 @@
   <!--tab切换-->
   <view class="nav" style="background-color: rgb(202,67,65)">
     <block wx:for="{{nav}}" wx:key="*this">
-      <view wx:if="{{currentTab==0}}" bindtap="navbar" class="{{currentTab==index?'active':''}}" data-tab="{{item}}" data-current="{{index}}">{{item}}</view>
-      <view wx:elif="{{currentTab!=0}}" bindtap="navbar" class="{{currentTab==index?'active2':''}}" data-tab="{{item}}" data-current="{{index}}">{{item}}</view>
+      <view wx:if="{{currentTab==0}}" bindtap="navbar" class="{{currentTab==index?'active':''}}" data-current="{{index}}">{{item}}</view>
+      <view wx:elif="{{currentTab!=0}}" bindtap="navbar" class="{{currentTab==index?'active2':''}}" data-current="{{index}}">{{item}}</view>
     </block>
   </view>
   <view style="height:90rpx;width:100%"></view>
   <!--全部列表-->
-  <view class="list-container" bindscroll="scroll">
+  <view class="list-container">
     <swiper wx:if="{{currentTab==0}}" indicator-dots="true" interval="5000" autoplay="{true" style="width:100%;height:400rpx;">
       <block wx:for="{{communityTop}}" wx:key="*this">
-        <swiper-item>
+         <swiper-item>
           <image data-cid="{{item.cID}}" data-ctype="{{item.cType}}" catchtap="goDetail" mode="aspectFill" style="width:100%;height:100%" src="{{item.thumbnailPic+item.picNames[0]}}"></image>
-        </swiper-item>
+        </swiper-item> 
       </block>
     </swiper>
     <block wx:for="{{community}}" wx:key="*this" wx:for-item="item" wx:for-index="index">

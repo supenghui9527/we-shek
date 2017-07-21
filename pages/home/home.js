@@ -17,7 +17,6 @@ Page({
     current: 0,
     currentTab: 0,
     communityCount: 0,
-    active: '全部',
     nav: ['全部', '党课', '支委会', '党员大会', '党小组会']
   },
   onLoad: function (options) {
@@ -158,11 +157,10 @@ Page({
       this.getData(20, 0, 3)
     }
   },
-  //tab切换
+  //点击对应切换调取对应的数据
   navbar(e) {
-    let active = e.target.dataset.tab, currentTab = e.target.dataset.current;
+    let currentTab = e.target.dataset.current;
     this.setData({
-      active: active,
       currentTab: currentTab
     });
     this.getPostings(currentTab);
