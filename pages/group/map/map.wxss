@@ -1,0 +1,5 @@
+/* pages/group/map/map.wxss */
+#myMap{
+  height: 60%;
+  width: 100%;
+}

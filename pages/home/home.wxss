@@ -39,9 +39,9 @@
 }
 .publish{
   position:fixed;
-  width: 100rpx;
+  width: 80rpx;
   bottom:250rpx;
-  right:20rpx;
+  right:50rpx;
   z-index: 999;
   text-align: center;
 }

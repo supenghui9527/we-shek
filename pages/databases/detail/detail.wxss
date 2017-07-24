@@ -59,9 +59,10 @@
   float:left;
   font-size:30rpx;
   font-weight:bold;
+  width: 130rpx;
 }
 .day{
-  font-size:70rpx;
+  font-size:60rpx;
 }
 .type{
   color:#586b95;

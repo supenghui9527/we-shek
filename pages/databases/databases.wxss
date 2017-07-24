@@ -122,7 +122,7 @@ page {
   width:70rpx;
   height:70rpx;
   position:fixed;
-  right:60rpx;
+  right:50rpx;
   bottom:250rpx;
   z-index: 9999;
 }
