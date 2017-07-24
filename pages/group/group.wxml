@@ -52,5 +52,9 @@
     <image src="/images/set.png"></image>
     <text>设置</text>
   </view>
+  <view catchtap="goAbout" style="border-bottom:none">
+    <image src="/images/about.png"></image>
+    <text>关于三会E课</text>
+  </view>
 </view>
 <template is="footbar" data="{{...footbar}}"></template>

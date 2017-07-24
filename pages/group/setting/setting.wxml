@@ -1,6 +1,6 @@
 <!--pages/group/setting/setting.wxml-->
 <view class="set">
-  <view catchtap="set" class="info">
+  <view catchtap="setinfo" class="info">
     <text>信息修改</text>
     <image src="/images/right.png"></image>
   </view>

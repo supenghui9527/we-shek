@@ -67,23 +67,23 @@ Page({
       windowWidth: res.windowWidth,
       pixelRatio: res.pixelRatio
     });
-    // 第一个字母距离顶部高度，css中定义nav高度为94%，所以 *0.94
-    const navHeight = this.data.windowHeight * 0.94, // 
+    // 第一个字母距离顶部高度，css中定义nav高度为83%，所以 *0.83
+    const navHeight = this.data.windowHeight * 0.83, // 
       eachLetterHeight = navHeight / 26,
       comTop = (this.data.windowHeight - navHeight) / 2,
       temp = [];
     this.setData({
       eachLetterHeight: eachLetterHeight
     });
-    // 求各字母距离设备左上角所处位置
-    for (let i = 0, len = letters.length; i < len; i++) {
-      const x = this.data.windowWidth - (10 + 50) / this.data.pixelRatio,
-        y = comTop + (i * eachLetterHeight);
-      temp.push([x, y]);
-    }
-    this.setData({
-      lettersPosition: temp
-    })
+    // //求各字母距离设备左上角所处位置
+    // for (let i = 0, len = letters.length; i < len; i++) {
+    //   const x = this.data.windowWidth - (10 + 50) / this.data.pixelRatio,
+    //     y = comTop + (i * eachLetterHeight);
+    //   temp.push([x, y]);
+    // }
+    // this.setData({
+    //   lettersPosition: temp
+    // })
   },
   tabLetter(e) {
     const index = e.currentTarget.dataset.index;
@@ -91,6 +91,7 @@ Page({
       selected: index,
       scrollIntoView: index
     })
+    console.log(this.data.scrollIntoView,this.data.selected);
     this.cleanAcitvedStatus();
   },
   // 清除字母选中状态
@@ -101,39 +102,39 @@ Page({
       })
     }, 500);
   },
-  touchmove(e) {
-    const x = e.touches[0].clientX,
-      y = e.touches[0].clientY,
-      lettersPosition = this.data.lettersPosition,
-      eachLetterHeight = this.data.eachLetterHeight,
-      letters = this.data.letters;
-    // 判断触摸点是否在字母导航栏上
-    if (x >= lettersPosition[0][0]) {
-      for (let i = 0, len = lettersPosition.length; i < len; i++) {
-        // 判断落在哪个字母区域，取出对应字母所在数组的索引，根据索引更新selected及scroll-into-view的值
-        const _y = lettersPosition[i][1], // 单个字母所处高度
-          __y = _y + eachLetterHeight; // 单个字母最大高度取值范围
-        if (y >= _y && y <= __y) {
-          this.setData({
-            selected: letters[i],
-            scrollIntoView: letters[i]
-          });
-          break;
-        }
-      }
-    }
-  },
-  touchend(e) {
-    this.cleanAcitvedStatus();
-  },
+  // touchmove(e) {
+  //   const x = e.touches[0].clientX,
+  //     y = e.touches[0].clientY,
+  //     lettersPosition = this.data.lettersPosition,
+  //     eachLetterHeight = this.data.eachLetterHeight,
+  //     letters = this.data.letters;
+  //   // 判断触摸点是否在字母导航栏上
+  //   if (x >= lettersPosition[0][0]) {
+  //     for (let i = 0, len = lettersPosition.length; i < len; i++) {
+  //       // 判断落在哪个字母区域，取出对应字母所在数组的索引，根据索引更新selected及scroll-into-view的值
+  //       const _y = lettersPosition[i][1], // 单个字母所处高度
+  //         __y = _y + eachLetterHeight; // 单个字母最大高度取值范围
+  //       if (y >= _y && y <= __y) {
+  //         this.setData({
+  //           selected: letters[i],
+  //           scrollIntoView: letters[i]
+  //         });
+  //         break;
+  //       }
+  //       console.log(this.data.selected, this.data.scrollIntoView);
+  //     }
+  //   }
+  //   console.log(2);
+  // },
+  // touchend(e) {
+  //   this.cleanAcitvedStatus();
+  // },
   //查看党员详情
   goUser(e) {
     let obj = e.currentTarget.dataset;
     wx.navigateTo({
       url: '/pages/databases/member/member?username=' + obj.username + '&position=' + obj.position + '&gender=' + obj.gender + '&joindate=' + obj.joindate + '&tel=' + obj.tel + '&idNum=' + obj.idnum + '&userID=' + obj.userid
     })
-  },
-  del(e) {
   },
   //添加党员
   addmember(){

@@ -1,0 +1,8 @@
+/* pages/group/about/about.wxss */
+.about,image{
+  height: 100%;
+  width: 100%;
+}
+.about{
+  overflow: hidden;
+}

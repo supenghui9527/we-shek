@@ -5,13 +5,13 @@ Page({
   onLoad: function (options) {
     // 修改党组织信息获取党组织原来的信息
     this.setData({
-      orgName: wx.getStorageSync('orgName'),
-      contactTel: wx.getStorageSync('contactTel'),
-      contactName: wx.getStorageSync('contactName'),
+      orgName: options.orgName,
+      contactTel: options.contactTel,
+      contactName: options.contactName,
       orgID: wx.getStorageSync('userID'),
-      secretary: wx.getStorageSync('secretary'),
-      secretaryTel: wx.getStorageSync('secretaryTel'),
-      contactPosition: wx.getStorageSync('contactPosition'),
+      secretary: options.secretary,
+      secretaryTel: options.secretaryTel,
+      contactPosition: options.contactPosition,
     })
   },
   //保存党组织信息
@@ -28,7 +28,7 @@ Page({
             title: res.data.message,
             mask: true,
             success: (res) => {
-              wx.navigateTo({
+              wx.redirectTo({
                 url: '/pages/group/group'
               })
             }

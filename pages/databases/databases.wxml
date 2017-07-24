@@ -24,14 +24,13 @@
 </view>
 <!--党员列表显示-->
 <view class="flex box box-lr">
-  <scroll-view class="flex groups box box-tb" scroll-y="true" scroll-into-view="{{scrollIntoView}}">
+  <scroll-view style="height:{{windowHeight-153+'px'}}" class="flex groups box box-tb" scroll-y="true" scroll-into-view="{{scrollIntoView}}" scroll-top="{{scrollTop}}">
     <block wx:for="{{groups}}" wx:key="*this" wx:for-item="group">
       <view class="flex" id="{{index}}">
         <view class="group-name">{{index}}</view>
         <view class="flex group-users">
           <view data-userID="{{user.userID}}" data-idNum="{{user.idNum}}" data-position="{{user.position}}" data-joinDate="{{user.joinDate}}" data-gender="{{user.gender}}" data-tel="{{user.tel}}" data-username="{{user.username}}" catchtap="goUser" wx:for="{{group}}"
             wx:key="*this" wx:for-item="user" wx:for-index="idx" class="user box box-lr user_detail">
-            <view wx:if="{{showDel}}" catchlongtap="del" class="del">删除</view>
             <view class="flex user-name">{{user.username}}</view>
           </view>
         </view>
@@ -40,7 +39,7 @@
   </scroll-view>
   <!--<image catchtap="goframework" class="architecture" src="/images/jiagou.png"></image>-->
   <!--26个字母跳转-->
-  <view hidden="{{searchShow}}" class="nav box box-tb" bindtouchmove="touchmove" bindtouchcancel="touchcancel" bindtouchend="touchend">
+  <view hidden="{{searchShow}}" class="nav box box-tb">
     <view bindtap="tabLetter" wx:key="*this" data-index="{{item}}" wx:for="{{letters}}" class="flex box box-align-center box-pack-center letter">
       <text class="letter-text {{selected == item ? 'letter-actived' : ''}}">{{item}}</text>
     </view>

@@ -71,36 +71,12 @@ Page({
   //设置
   set(){
     let data = this.data.datas;
-    // 把信息保存到本地
     wx.setStorage({
-      key: 'contactName',
-      data: data.orgBean.contactName
-    });
-    wx.setStorage({
-      key: 'contactTel',
-      data: data.orgBean.contactTel
-    });
-    wx.setStorage({
-      key: 'orgName',
-      data: data.orgBean.orgName
-    });
-    wx.setStorage({
-      key: 'orgNumber',
+      key: "orgNumber",
       data: data.orgBean.orgNumber
-    });
-    wx.setStorage({
-      key: 'secretary',
-      data: data.orgBean.secretary
-    });
-    wx.setStorage({
-      key: 'contactPosition',
-      data: data.orgBean.contactPosition
-    });
-    wx.setStorage({
-      key: 'secretaryTel',
-      data: data.orgBean.secretaryTel
-    });
-    wx.navigateTo({url: './setting/setting'});
+    })
+    // 把信息传递到设置页面
+    wx.navigateTo({ url: `./setting/setting?contactName=${data.orgBean.contactName}&contactTel=${data.orgBean.contactTel}&orgName=${data.orgBean.orgName}&orgNumber=${data.orgBean.orgNumber}&secretary=${data.orgBean.secretary}&contactPosition=${data.orgBean.contactPosition}&secretaryTel=${data.orgBean.secretaryTel}`});
   },
   showPrompt:function(){
     wx.showToast({
@@ -124,7 +100,13 @@ Page({
     wx.navigateTo({
       url: './mywork/mywork'
     })
-  }
+  },
+  //点击进入关于三会E课
+  goAbout(){
+    wx.navigateTo({
+      url: './about/about'
+    })
+  },
   //点击到地图
   // goToMap(e){
   //   let data = e.currentTarget.dataset;

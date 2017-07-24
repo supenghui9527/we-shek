@@ -6,15 +6,15 @@
   <input type="text" hidden="true" name="ontactPosition" value="{{ontactPosition}}" />
   <view class="info">
     <label>组织名称</label>
-    <input type="text" name="username" value="{{orgName}}" />
+    <input focus="true" type="text" name="orgName" value="{{orgName}}" />
   </view>
   <view class="info">
     <label>联系人</label>
-    <input type="text" name="username" value="{{contactName}}" />
+    <input type="text" name="contactName" value="{{contactName}}" />
   </view>
   <view class="info">
     <label>联系方式</label>
-    <input type="text" name="username" value="{{contactTel}}" />
+    <input type="text" name="contactTel" value="{{contactTel}}" />
   </view>
   <button class="btn" formType="submit">保存</button>
 </form>

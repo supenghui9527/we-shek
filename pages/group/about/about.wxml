@@ -1,0 +1,4 @@
+<!--pages/group/about/about.wxml-->
+<view class="about">
+  <image src="/images/about.jpg"></image>
+</view>
