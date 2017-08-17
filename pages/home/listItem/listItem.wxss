@@ -22,6 +22,7 @@
   padding-top:15rpx;
   line-height: 40rpx;
   padding-left:20rpx;
+  width: 400rpx;
 }
 .depart text{
   display: block;

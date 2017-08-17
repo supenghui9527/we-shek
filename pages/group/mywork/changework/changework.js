@@ -45,8 +45,8 @@ Page({
             wx.showToast({
               title: '修改成功',
               success: (res) => {
-                wx.redirectTo({
-                  url: '../mywork'
+                wx.navigateBack({
+                  delta: 1
                 })
               }
             })

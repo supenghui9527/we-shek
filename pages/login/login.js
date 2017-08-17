@@ -4,12 +4,6 @@ Page({
   data: {
   },
   onLoad: function (options) {
-    //判断本地是否存有密码
-    if (wx.getStorageSync('accessToken')){
-      wx.redirectTo({
-        url: '/pages/home/home'
-      })
-    }
   },
   //获取用户名
   getUser(e){

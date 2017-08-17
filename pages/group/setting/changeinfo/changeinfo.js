@@ -28,8 +28,8 @@ Page({
             title: res.data.message,
             mask: true,
             success: (res) => {
-              wx.redirectTo({
-                url: '/pages/group/group'
+              wx.navigateBack({
+                delta: 2
               })
             }
           })

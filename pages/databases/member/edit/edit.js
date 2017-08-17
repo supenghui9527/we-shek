@@ -28,8 +28,10 @@ Page({
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       success: (res) => {
         if(res.data.state==1){
-          wx.redirectTo({
-            url: '/pages/databases/databases'
+          wx.removeStorageSync('groups');
+          wx.setStorageSync('isLoad', true);
+          wx.navigateBack({
+            delta:2
           })
         }
       }

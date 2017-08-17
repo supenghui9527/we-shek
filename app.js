@@ -5,11 +5,17 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    //判断本地是否存有密码
+    if (wx.getStorageSync('accessToken')) {
+      wx.redirectTo({
+        url: '/pages/home/home'
+      })
+    }
   },
   onHide: function () {
     setTimeout(()=>{
-      wx.clearStorageSync();
-    },600000);
+      wx.removeStorageSync('groups');
+    },300000);
   },
   getUserInfo:function(cb){
     var that = this

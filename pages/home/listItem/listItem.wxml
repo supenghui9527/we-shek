@@ -2,7 +2,7 @@
 <template name="listItem">
   <view data-type="{{cType}}" data-cid="{{cID}}" catchtap="{{isDetail?'goDetail':''}}" class="listItem">
     <view data-higherOrgID="{{org.higherOrgID}}" data-orgID="{{org.orgID}}" catchtap="gopartydetail" class="user clearfix">
-      <image src="{{org.headThumb==null?'/images/people.png':org.headThumb}}"></image>
+      <image src="{{org.headThumb==null||org.headThumb==''?'/images/people.png':org.headThumb}}"></image>
       <view class="depart">
         <text>{{org.orgName}}</text>
         <text>{{createTime}}</text>

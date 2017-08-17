@@ -85,6 +85,12 @@ Page({
     //   lettersPosition: temp
     // })
   },
+  onShow:function(){
+    if (wx.getStorageSync('isLoad')){
+      this.onLoad();
+      wx.removeStorageSync("isLoad");
+    }
+  },
   tabLetter(e) {
     const index = e.currentTarget.dataset.index;
     this.setData({

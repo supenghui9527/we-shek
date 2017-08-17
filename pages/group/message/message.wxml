@@ -10,7 +10,7 @@
         </view>
         <view>
           <text>{{item.msgCreateTime}}</text>
-          <text data-msgID="{{item.msgID}}" catchtap="delMessage">删除</text>
+          <text data-msgID="{{item.msgID}}" catchtap="delMessage">删除该消息</text>
         </view>
       </view>
     </view>

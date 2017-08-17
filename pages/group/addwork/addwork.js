@@ -23,8 +23,8 @@ Page({
           wx.showToast({
             title: '添加成功',
             success: (res) => {
-              wx.redirectTo({
-                url: '../mywork/mywork'
+              wx.navigateBack({
+                delta: 2
               })
             }
           })

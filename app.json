@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/group/map/map",
+    "pages/group/about/about",
     "pages/group/mywork/mywork",
     "pages/group/addwork/addwork",
     "pages/databases/databases",

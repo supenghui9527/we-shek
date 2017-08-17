@@ -42,10 +42,11 @@ Page({
           wx.showToast({
             title: '保存成功',
             success:(res)=>{
-              wx.navigateTo({
+              wx.removeStorageSync('groups');
+              wx.setStorageSync('isLoad', true);
+              wx.redirectTo({
                 url: '/pages/databases/databases'
               })
-              wx.removeStorageSync('groups');
             }
           })
         }
