@@ -97,7 +97,7 @@ Page({
       }
     })
   },
-  //显示评论输入
+  //显示评论输入模块
   showComment(){
     this.setData({
       show:!this.data.show

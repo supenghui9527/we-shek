@@ -15,7 +15,13 @@ Page({
       tel:options.tel,
       idNum: options.idNum,
       userID: options.userID
-    })
+    });
+    //判断该帐号是否有删除党员权限
+    if (wx.getStorageSync('orgName').indexOf('党支部') !== -1) {
+      this.setData({
+        noDel:true
+      })
+    }
   },
   //拨打电话
   call(){

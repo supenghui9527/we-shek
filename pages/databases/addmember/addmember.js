@@ -32,6 +32,10 @@ Page({
       return false;
     }
     //提交添加党员信息
+    wx.showLoading({
+      title: '添加中...',
+      mask:true
+    })
     wx.request({
       url: getApp().globalData.domain + 'addDangYuan.do',
       method: 'post',
@@ -39,15 +43,16 @@ Page({
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       success: (res) => {
         if (res.data.state == 1) {
+          wx.hideLoading();
+          wx.removeStorageSync('groups');
+          wx.setStorageSync('isLoad', true);
+          wx.navigateBack({
+            delta: 1
+          })
+        }else if(res.data.state == 0){
           wx.showToast({
-            title: '保存成功',
-            success:(res)=>{
-              wx.removeStorageSync('groups');
-              wx.setStorageSync('isLoad', true);
-              wx.redirectTo({
-                url: '/pages/databases/databases'
-              })
-            }
+            title: res.data.message,
+            image: '/images/about.png'
           })
         }
       }

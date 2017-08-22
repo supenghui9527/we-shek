@@ -2,7 +2,7 @@
 <view class="message">
   <view wx:for="{{datas}}" wx:key="*this">
     <view catchtap="showMessage" data-index="{{index}}" class="messageList">
-      <image class="avatar" src="{{item.org.headThumb}}"></image>
+      <image class="avatar" src="{{item.org.headThumb==''||item.org.headThumb==null?'/images/people.png':item.org.headThumb}}"></image>
       <view class="reason">
         <view>
           <text>{{item.msgContent}}</text>
@@ -10,7 +10,7 @@
         </view>
         <view>
           <text>{{item.msgCreateTime}}</text>
-          <text data-msgID="{{item.msgID}}" catchtap="delMessage">删除该消息</text>
+          <text class="del-message" data-msgID="{{item.msgID}}" catchtap="delMessage">删除该消息</text>
         </view>
       </view>
     </view>

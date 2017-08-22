@@ -21,6 +21,10 @@ Page({
   //保存党员信息
   onSave(e){
     let data = e.detail.value;
+    wx.showLoading({
+      title: '保存中...',
+      mask: true
+    });
     wx.request({
       url: getApp().globalData.domain + 'modifyDangYuan.do',
       method: 'post',
@@ -28,10 +32,15 @@ Page({
       header: { "Content-Type": "application/x-www-form-urlencoded" },
       success: (res) => {
         if(res.data.state==1){
+          wx.hideLoading();
           wx.removeStorageSync('groups');
           wx.setStorageSync('isLoad', true);
           wx.navigateBack({
             delta:2
+          })
+        }else{
+          wx.showToast({
+            title: '保存失败'
           })
         }
       }

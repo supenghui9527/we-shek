@@ -40,5 +40,5 @@
     </view>
   </view>
 </view>
-<view catchtap="goEdit" class="btn">编辑</view>
-<view catchtap="showDel" class="btn">删除</view>
+<view style="margin-top:40rpx" catchtap="goEdit" class="btn">编辑</view>
+<view wx:if="{{noDel}}" catchtap="showDel" class="btn">删除</view>

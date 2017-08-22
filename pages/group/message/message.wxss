@@ -25,6 +25,9 @@
   max-width: 350rpx;
   overflow: hidden;
 }
+.del-message{
+  color:#ca4341;
+}
 .messageList .reason view:nth-child(1){
   width:350rpx;
 }

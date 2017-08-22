@@ -1,7 +1,7 @@
 <!--databases.wxml-->
 <import src="../footbar/footbar.wxml" />
 <!--添加党员-->
-<view catchtap="addmember" class="add">
+<view wx:if="{{noAdd}}" catchtap="addmember" class="add">
   <image src="/images/btn1.png"></image>
 </view>
 <!--搜索内容-->
