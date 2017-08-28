@@ -23,7 +23,7 @@
   <view class="info">
     <image src="/images/time.png"></image>
     <label>入党时间</label>
-    <picker class="datecontainer" mode="date" value="{{date}}" start="1900-6-01" end="2080-09-01" bindchange="bindDateChange">
+    <picker class="datecontainer" mode="date" value="{{date}}" start="1800-6-01" end="2900-09-01" bindchange="bindDateChange">
       <view class="date">{{date}}</view>
     </picker>
   </view>

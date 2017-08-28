@@ -15,6 +15,7 @@ App({
   onHide: function () {
     setTimeout(()=>{
       wx.removeStorageSync('groups');
+      wx.removeStorageSync('list');
     },300000);
   },
   getUserInfo:function(cb){
@@ -35,7 +36,7 @@ App({
       })
     }
   },
-  //服务器地https://www.jshhfl.com/xwdj/'http://192.168.8.81:8183/xwdj/'
+  //服务器地https://www.jshhfl.com/xwdj/'http://192.168.8.15:8183/xwdj/'
   globalData:{
     userInfo:null,
     host:'http://www.wsspha.cn/images',

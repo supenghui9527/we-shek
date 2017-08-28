@@ -79,8 +79,8 @@ Page({
     wx.navigateTo({ url: `./setting/setting?contactName=${data.orgBean.contactName}&contactTel=${data.orgBean.contactTel}&orgName=${data.orgBean.orgName}&orgNumber=${data.orgBean.orgNumber}&secretary=${data.orgBean.secretary}&contactPosition=${data.orgBean.contactPosition}&secretaryTel=${data.orgBean.secretaryTel}`});
   },
   showPrompt:function(){
-    wx.showToast({
-      title: '该功能正在完善中'
+    wx.navigateTo({
+      url: './integral/integral'
     })
   },
   //点击查看消息

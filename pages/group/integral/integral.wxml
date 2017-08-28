@@ -1,0 +1,51 @@
+<view class="search">
+  <input type="text" bindinput="inputVal" placeholder="点击输入要搜索的内容" />
+  <image class="searchBtn" catchtap="search" src="/images/search.png"></image>
+</view>
+<view hidden="{{showMonths}}" catchtap="hideMonth" class="mask"></view>
+<view hidden="{{showErr}}" class="showErr">时间超出范围，起始时间为2017年07月至本月</view>
+<view hidden="{{showMonths}}" class="choseMonths">
+  <view class="years">{{year}}</view>
+  <view class="months clearfix">
+    <view class="float-left" wx:for="{{months}}" wx:key="item">
+      <view catchtap="choseMonth" data-val="{{item.id}}" data-month="{{item.month}}" class="{{item.month==activeMonth?'active_month':''}}">{{item.month}}</view>
+    </view>
+  </view>
+</view>
+<view class="name">
+  <text>{{orgName}}</text>
+  <text>总分{{datas.allPoint}}分</text>
+  <text>排名{{datas.order}}名</text>
+</view>
+<view class="integral">
+  <block wx:for="{{Ptype}}" wx:key="ptype">
+    <view class="type">
+      <view>
+        <image src="{{item.imgUrl}}"></image>
+        <view>{{item.pname}}</view>
+      </view>
+      <view>{{item.nub}}分</view>
+    </view>
+  </block>
+</view>
+<view class="time">
+  <view>
+    <text>本月</text>
+    <image catchtap="toSort" src="/images/down2.png"></image>
+  </view>
+  <view catchtap="showChoseMonth">历史排行榜</view>
+</view>
+<view class="list-content">
+  <view class="nav">
+    <text catchtap="changeNav" data-index="{{index}}" wx:for="{{orgType}}" wx:key="nav" class="{{item.id==active?'active':''}}">{{item.name}}</text>
+  </view>
+  <view style="height:{{contentHeight}}rpx" class="content">
+    <block wx:for="{{list}}" wx:key="{{item.rank}}">
+      <view class="item">
+        <text>{{item.rank}}</text>
+        <text>{{item.orgName}}</text>
+        <text>{{item.totalPoint}}分</text>
+      </view>
+    </block>
+  </view>
+</view>
