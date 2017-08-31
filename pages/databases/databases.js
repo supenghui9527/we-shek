@@ -37,6 +37,9 @@ Page({
         groups: wx.getStorageSync('groups')
       })
     }else{
+      wx.showLoading({
+        title: '加载中...'
+      })
       wx.request({
         url: getApp().globalData.domain + 'findUSerByOrgID.do',
         method: 'get',
@@ -49,6 +52,7 @@ Page({
           'content-type': 'application/json'
         },
         success: (res) => {
+          wx.hideLoading();
           this.setData({
             groups: res.data.data
           })

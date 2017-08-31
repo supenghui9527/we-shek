@@ -74,6 +74,7 @@ Page({
         i++;
         if (i == length) {
           // console.log('总共' + successUp + '张上传成功,' + failUp + '张上传失败！');
+          wx.hideLoading();
           wx.redirectTo({
             url: '/pages/home/home'
           })
@@ -91,6 +92,10 @@ Page({
     length = this.data.tempFilePaths.length, //总共个数
     i = 0, //第几个
     data = e.detail.value;
+    wx.showLoading({
+      title: '发帖中...',
+      mask: true
+    });
     wx.request({
       url: getApp().globalData.domain + 'publicCommunity.do',
       method: 'post',

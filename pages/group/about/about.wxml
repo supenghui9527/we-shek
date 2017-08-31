@@ -1,4 +1,4 @@
 <!--pages/group/about/about.wxml-->
 <view class="about">
-  <image src="/images/about.jpg"></image>
+  <text>V1.1.7</text>
 </view>

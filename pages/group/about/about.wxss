@@ -1,8 +1,17 @@
-/* pages/group/about/about.wxss */
-.about,image{
+.about{
   height: 100%;
   width: 100%;
-}
-.about{
   overflow: hidden;
+  background: url('/images/about.jpg') no-repeat;
+  background-size:100% 100%;
+}
+.about text{
+  position: absolute;
+  top:430rpx;
+  left: 0;
+  width:100%;
+  text-align: center;
+  font-size: 40rpx;
+  color:#646464;
+  font-weight: 500;
 }

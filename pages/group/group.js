@@ -78,10 +78,14 @@ Page({
     // 把信息传递到设置页面
     wx.navigateTo({ url: `./setting/setting?contactName=${data.orgBean.contactName}&contactTel=${data.orgBean.contactTel}&orgName=${data.orgBean.orgName}&orgNumber=${data.orgBean.orgNumber}&secretary=${data.orgBean.secretary}&contactPosition=${data.orgBean.contactPosition}&secretaryTel=${data.orgBean.secretaryTel}`});
   },
+  //进入我的积分
   showPrompt:function(){
     wx.navigateTo({
       url: './integral/integral'
     })
+    // wx.showToast({
+    //   title: '该功能正在完善中...',
+    // })
   },
   //点击查看消息
   gomessage(){

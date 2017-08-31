@@ -41,8 +41,18 @@
   </view>
   <view style="height:{{contentHeight}}rpx" class="content">
     <block wx:for="{{list}}" wx:key="{{item.rank}}">
-      <view class="item">
-        <text>{{item.rank}}</text>
+      <view wx:if="{{item.totalPoint>item.prePoint}}" class="item item_img">
+        <text class="{{item.rank<=3?'':'active_color'}}">{{item.rank}}</text>
+        <text>{{item.orgName}}</text>
+        <text>{{item.totalPoint}}分</text>
+      </view>
+      <view wx:elif="{{item.totalPoint<item.prePoint}}" class="item item_img1">
+        <text class="{{item.rank<=3?'':'active_color'}}">{{item.rank}}</text>
+        <text>{{item.orgName}}</text>
+        <text>{{item.totalPoint}}分</text>
+      </view>
+      <view wx:elif="{{item.totalPoint==item.prePoint}}" class="item item_img2">
+        <text class="{{item.rank<=3?'':'active_color'}}">{{item.rank}}</text>
         <text>{{item.orgName}}</text>
         <text>{{item.totalPoint}}分</text>
       </view>
