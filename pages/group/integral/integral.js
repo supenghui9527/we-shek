@@ -6,6 +6,7 @@ Page({
     list: [],
     showMonths: true,
     showErr: true,
+    nowMonth: month,
     months: [{ month: 1, id: '01' }, { month: 2, id: '02' }, { month: 3, id: '03' }, { month: 4, id: '04' }, { month: 5, id: '05' }, { month: 6, id: '06' }, { month: 7, id: '07' }, { month: 8, id: '08' }, { month: 9, id: '09' }, { month: 10, id: '10' }, { month: 11, id: '11' }, { month: 12, id: '12' }],
     Ptype: [
       {
@@ -179,8 +180,8 @@ Page({
   },
   //处理年月格式
   setDate: function () {
-    if (month.toString().length == 1) {
-      let newMonth = '0' + month;
+    if (this.data.activeMonth.toString().length == 1) {
+      let newMonth = '0' + this.data.activeMonth;
       nowDate = year + '-' + newMonth;
     }
   },

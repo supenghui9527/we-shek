@@ -30,7 +30,7 @@
 </view>
 <view class="time">
   <view>
-    <text>本月</text>
+    <text>{{activeMonth==nowMonth?'当月':activeMonth+'月'}}</text>
     <image catchtap="toSort" src="/images/down2.png"></image>
   </view>
   <view catchtap="showChoseMonth">历史排行榜</view>
