@@ -99,7 +99,7 @@ page{
   padding:0 20rpx;
   box-sizing: border-box;
   height: 90rpx;
-  font-size: 30rpx;
+  font-size: 26rpx;
   border-bottom:1px solid #f0f0f0;
   display: flex;
   align-items: center;

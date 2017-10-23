@@ -180,10 +180,9 @@ Page({
   },
   //处理年月格式
   setDate: function () {
-    if (this.data.activeMonth.toString().length == 1) {
-      let newMonth = '0' + this.data.activeMonth;
-      nowDate = year + '-' + newMonth;
-    }
+    let newMonth;
+    this.data.activeMonth.toString().length == 1 ? newMonth = `0${this.data.activeMonth}` : newMonth = this.data.activeMonth;
+    nowDate = year + '-' + newMonth;
   },
   //选择月份查询排行
   choseMonth: function (e) {

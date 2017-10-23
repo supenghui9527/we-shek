@@ -19,7 +19,6 @@
   display: block;
 }
 .user>view:nth-child(1){
-  width:100%;
   text-align: center;
   height:121rpx;
   position: relative;

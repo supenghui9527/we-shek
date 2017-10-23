@@ -17,7 +17,7 @@ Page({
     current: 0,
     currentTab: 0,
     communityCount: 0,
-    nav: ['全部', '党课', '支委会', '党员大会', '党小组会']
+    nav: ['全部', '党员大会', '支委会', '党小组会','党课']
   },
   onLoad: function (options) {
     this.getData(20, -1, -1);
@@ -94,14 +94,14 @@ Page({
     this.data.pageIndex++;
     if (currentTab == 0) {
       this.reachData(20, this.data.pageIndex, -1, -1)
-    } else if (currentTab == 1) {//党课
-      this.reachData(20, this.data.pageIndex, 0, 0)
-    } else if (currentTab == 2) {//支委会
-      this.reachData(20, this.data.pageIndex, 0, 1)
-    } else if (currentTab == 3) {//党员大会
+    } else if (currentTab == 1) {//党员大会
       this.reachData(20, this.data.pageIndex, 0, 2)
-    } else {//党小组会
+    } else if (currentTab == 2) {//党委会
+      this.reachData(20, this.data.pageIndex, 0, 1)
+    } else if (currentTab == 3) {//党小组会
       this.reachData(20, this.data.pageIndex, 0, 3)
+    } else {//党课
+      this.reachData(20, this.data.pageIndex, 0, 0)
     }
   },
   //上拉加在更多
@@ -147,14 +147,14 @@ Page({
     // 获取全部帖子
     if (currentTab == 0) {
       this.getData(20, -1, -1)
-    } else if (currentTab == 1) {//党课
-      this.getData(20, 0, 0)
+    } else if (currentTab == 1) {//党员大会
+      this.getData(20, 0, 2)
     } else if (currentTab == 2) {//支委会
       this.getData(20, 0, 1)
-    } else if (currentTab == 3) {//党员大会
-      this.getData(20, 0, 2)
-    } else {//党小组会
+    } else if (currentTab == 3) {//党小组会
       this.getData(20, 0, 3)
+    } else {//党课
+      this.getData(20, 0, 0)
     }
   },
   //点击对应切换调取对应的数据

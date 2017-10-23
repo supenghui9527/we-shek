@@ -75,6 +75,7 @@
 }
 .operate{
   display: flex;
+  padding-top:6 rpx;
   justify-content: space-between;
 }
 .list_item>view:nth-child(2) image{
@@ -111,5 +112,4 @@
   -webkit-line-clamp: 3;
   max-height: 120rpx;
   overflow: hidden;
-  height: 150rpx;
 }

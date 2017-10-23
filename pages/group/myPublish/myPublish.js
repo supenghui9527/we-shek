@@ -20,8 +20,8 @@ Page({
         if (res.data.state == 1) {
           let datas = res.data.data;
           for(let i=0;i<datas.length;i++ ){
-            datas[i].month = new Date((datas[i].meetingTime.replace(/-/g, '/'))).getMonth()+1+'月';
-            datas[i].day = new Date((datas[i].meetingTime.replace(/-/g, '/'))).getDate();
+            datas[i].month = new Date((datas[i].createTime.replace(/-/g, '/'))).getMonth()+1+'月';
+            datas[i].day = new Date((datas[i].createTime.replace(/-/g, '/'))).getDate();
           }
           this.setData({
             myworks: datas
