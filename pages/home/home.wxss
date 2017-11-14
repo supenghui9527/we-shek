@@ -10,18 +10,22 @@
   height:90rpx;
   display: flex;
   justify-content:space-around;
+  align-items: center;
   font-size:32rpx;
-  position: absolute;
+  position: fixed;
   top:0;
   left:0;
-  z-index: 9999;
+  z-index: 9999; 
   color:#f0f0f0;
 }
 .nav view{
-  text-align: center;
   height:100%;
   line-height: 90rpx;
   box-sizing: border-box;
+}
+.nav image{
+  width:40rpx;
+  height:40rpx
 }
 .active{
   border-bottom:2px solid #fff;

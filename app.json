@@ -1,6 +1,9 @@
 {
   "pages": [
     "pages/login/login",
+    "pages/map/map",
+    "pages/map/detail/detail",
+    "pages/group/integral/integral",
     "pages/group/map/map",
     "pages/group/about/about",
     "pages/group/mywork/mywork",
@@ -20,7 +23,8 @@
     "pages/home/publish/publish",
     "pages/databases/member/edit/edit",
     "pages/group/myPublish/myPublish",
-    "pages/home/detail/detail"
+    "pages/home/detail/detail",
+    "pages/home/searchList/searchList"
   ],
   "window": {
     "backgroundTextStyle": "light",

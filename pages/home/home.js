@@ -4,7 +4,7 @@ Page({
   data: {
     footbar: {
       home: true,
-      data: false,
+      map: false,
       mine: false
     },
     userID: 0,
@@ -231,6 +231,12 @@ Page({
     //浏览大图
     wx.previewImage({
       urls: urls
+    })
+  },
+  // 搜索
+  showSearch(){
+    wx.navigateTo({
+      url: '/pages/home/searchList/searchList'
     })
   }
 })

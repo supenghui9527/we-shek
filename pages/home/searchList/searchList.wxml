@@ -1,0 +1,17 @@
+<!--pages/home/searchList/searchList.wxml-->
+<import src="../listItem/listItem.wxml" />
+<view class='search_list'>
+  <view style='height:90rpx'></view>
+  <view class="search_container">
+    <view>
+      <input bindinput="searchContent" type='text' value='{{content}}' confirm-type="search"></input>
+      <image class='search_btn' catchtap='goSearch' src='/images/search2.png'></image>
+      <image class='cancel' catchtap='deletSearch' src='/images/cancel.png'></image>
+    </view>
+    <text catchtap='hideSearch'>取消</text>
+  </view>
+  <block wx:for="{{community}}" wx:key="*this" wx:for-item="item" wx:for-index="index">
+    <template data-index="{{index}}" is="listItem" data="{{...item}}" />
+  </block>
+</view>
+

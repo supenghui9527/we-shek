@@ -7,7 +7,7 @@
   text-align: center;
   color: #ffffff;
 }
-.user>view:nth-child(3) navigator{
+.user>view:nth-child(3) view{
   margin-top:25rpx;
   width:25%;
   float:left;
@@ -15,7 +15,7 @@
   border-right:1rpx solid #ccc;
   box-sizing: border-box;
 }
-.user>view:nth-child(3) navigator text{
+.user>view:nth-child(3) view text{
   display: block;
 }
 .user>view:nth-child(1){

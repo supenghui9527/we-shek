@@ -1,0 +1,9 @@
+<!--pages/map/detail/detail.wxml-->
+<view class='detail'>
+  <view>{{detail.positionName}}</view>
+  <view>{{detail.positionAddress}}</view>
+  <view>{{detail.type}}</view>
+  <view>{{detail.telephone}}</view>
+  <view>{{detail.openTime}}</view>
+  <view>{{detail.positionBriefing}}</view>
+</view>

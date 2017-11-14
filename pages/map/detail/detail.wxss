@@ -1,0 +1,38 @@
+/* pages/map/detail/detail.wxss */
+.detail view:nth-child(1),.detail view:nth-child(2),.detail view:nth-child(3),.detail view:nth-child(4),.detail view:nth-child(5){
+  width:100%;
+  box-sizing: border-box;
+  padding-top:30rpx;
+  padding-bottom: 30rpx;
+  padding-right: 30rpx;
+  border-bottom:1rpx solid #f0f0f0;
+}
+.detail view{
+  min-height: 100rpx;
+}
+.detail view:nth-child(1){
+  padding-left:40rpx;
+  font-size:40rpx;
+}
+.detail view:nth-child(2),.detail view:nth-child(3),.detail view:nth-child(4),.detail view:nth-child(5),.detail view:nth-child(6){
+  font-size:36rpx;
+  padding-left:98rpx;
+  background-size:50rpx 50rpx !important;
+}
+.detail view:nth-child(2){
+  background: url('http://www.wsspha.cn/images/location.png') no-repeat 32rpx center;
+}
+.detail view:nth-child(3){
+  background: url('http://www.wsspha.cn/images/list.png') no-repeat 32rpx center;
+}
+.detail view:nth-child(4){
+  background: url('http://www.wsspha.cn/images/mobile.png') no-repeat 32rpx center;
+}
+.detail view:nth-child(5){
+  background: url('http://www.wsspha.cn/images/alarm.png') no-repeat 32rpx center;
+}
+.detail view:nth-child(6){
+  padding-top:30rpx;
+  padding-right: 20rpx;
+  background: url('http://www.wsspha.cn/images/clipboard.png') no-repeat 32rpx 30rpx;
+}

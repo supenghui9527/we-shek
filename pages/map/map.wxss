@@ -1,0 +1,47 @@
+/* pages/map/map.wxss */
+#map{
+  width:100%;
+  height:100%;
+}
+.map_height{
+  height:85% !important;
+}
+.go_detail{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:15%;
+  background-color:#fff;
+  z-index:99999;
+}
+.btn{
+  width:20%;
+  height:100%;
+  color:#509ffc;
+  display: flex;
+  align-items: center;
+  position:absolute;
+  right:0;
+  top:0;
+}
+.route{
+  position:fixed;
+  right:40rpx;
+  bottom:100rpx;
+  z-index:666666;
+}
+.route image{
+  width:120rpx;
+  height:120rpx;
+}
+.go_detail >view:nth-child(1){
+  width:80%;
+  height:100%;
+  font-size: 36rpx;
+  padding-left:40rpx;
+  box-sizing: border-box;
+  color:#646464;
+  display: flex;
+  align-items: center;
+}

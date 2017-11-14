@@ -62,7 +62,7 @@
           </view>
         </view>
         <!-- 删除帖子 -->
-        <view catchtap="delPublish" wx:if="{{!isDetail&&userID==org.orgID}}">
+        <view catchtap="delPublish" wx:if="{{!isDetail&&userID==org.orgID||!isDetail&&userID==org.higherOrgID}}">
           <text>删除</text>
         </view>
       </view>

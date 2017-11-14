@@ -1,4 +1,5 @@
 //app.js
+let fnHttp = require('./utils/util.js');
 App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
@@ -13,10 +14,8 @@ App({
     }
   },
   onHide: function () {
-    setTimeout(()=>{
-      wx.removeStorageSync('groups');
-      wx.removeStorageSync('list');
-    },300000);
+    wx.removeStorageSync('groups');
+    wx.removeStorageSync('list');
   },
   getUserInfo:function(cb){
     var that = this
@@ -40,6 +39,7 @@ App({
   globalData:{
     userInfo:null,
     host:'http://www.wsspha.cn/images',
-    domain: 'https://www.jshhfl.com/xwdj/'
+    domain: 'https://www.jshhfl.com/xwdj/',
+    $ajax: fnHttp.fnHttp
   }
 })

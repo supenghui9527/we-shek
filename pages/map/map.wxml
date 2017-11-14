@@ -1,0 +1,11 @@
+<!--pages/map/map.wxml-->
+<map class="{{showDetail?'map_height:':''}}" id="map" longitude="{{centerX}}" latitude="{{centerY}}" scale="12" controls="{{showDetail?controls:''}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location ></map>
+<view wx:if="{{showDetail}}" class='go_detail'>
+  <view>
+    <view>
+      <view>{{detail.positionAddress}}</view>
+      <view>{{distance}}</view>
+    </view>
+  </view>
+  <view catchtap='goDetail' class='btn'>详情></view>
+</view>

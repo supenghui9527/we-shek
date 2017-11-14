@@ -5,9 +5,9 @@
       <image class="home_img" src="{{home?'/images/home2.png':'/images/home.png'}}"></image>
       <text class="{{home?'cur_color':''}}">党建圈</text>
     </navigator>
-    <navigator open-type="redirect" url="{{data?'':'/pages/databases/databases'}}">
-      <image class="data_img" src="{{data?'/images/data2.png':'/images/data.png'}}"></image>
-      <text class="{{data?'cur_color':''}}">党建云</text>
+    <navigator open-type="navigate" url="{{map?'':'/pages/map/map'}}">
+      <image class="data_img" src="{{map?'/images/data2.png':'/images/data.png'}}"></image>
+      <text class="{{map?'cur_color':''}}">党建地图</text>
     </navigator>
     <navigator open-type="redirect" url="{{mine?'':'/pages/group/group'}}">
       <image class="mine_img" src="{{mine?'/images/profile2.png':'/images/profile.png'}}"></image>

@@ -2,7 +2,7 @@ Page({
   data: {
     footbar: {
       home: false,
-      data: false,
+      map: false,
       mine: true
     }
   },
@@ -83,9 +83,6 @@ Page({
     wx.navigateTo({
       url: './integral/integral'
     })
-    // wx.showToast({
-    //   title: '该功能正在完善中...',
-    // })
   },
   //点击查看消息
   gomessage(){
@@ -112,10 +109,10 @@ Page({
     })
   },
   //点击到地图
-  // goToMap(e){
-  //   let data = e.currentTarget.dataset;
-  //   wx.navigateTo({
-  //     url: '/pages/map/map?lat='+data.lat+'&lng='+data.lng
-  //   })
-  // }
+  goToMap(e){
+    let data = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `/pages/map/map?lat=${data.lat}&lng=${data.lng}`
+    })
+  }
 })

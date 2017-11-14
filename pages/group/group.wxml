@@ -9,22 +9,22 @@
     <text>{{datas.orgBean.orgName}}</text>
   </view>
   <view>
-    <navigator url="/pages/databases/databases">
+    <view>
       <text>{{datas.DangYuan}}</text>
       <text>党员</text>
-    </navigator>
-    <navigator url="/pages/databases/databases">
+    </view>
+    <view>
       <text>{{datas.DangGW}}</text>
       <text>党工委</text>
-    </navigator>
-    <navigator url="/pages/databases/databases">
+    </view>
+    <view>
       <text>{{datas.DangW}}</text>
       <text>党委</text>
-    </navigator>
-    <navigator style="border:none" url="/pages/databases/databases">
+    </view>
+    <view style="border:none">
       <text>{{datas.DangZB}}</text>
       <text>党支部</text>
-    </navigator>
+    </view>
   </view>
 </view>
 <view class="pos_tel">
