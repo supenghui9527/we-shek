@@ -3,13 +3,13 @@ const state = {
 
 }
 const action = {
-  clickLikes ({WX,data={}}) {
+  clickLikes ({MINA,data={}}) {
     getApp().$ajax({
       httpUrl: getApp().api.likesUrl,
       data: data
     }).then(({ data }) => {
-      let currentTab = WX.data.currentTab;
-      WX.getPostings(currentTab);
+      let currentTab = MINA.data.currentTab;
+      MINA.getPostings(currentTab);
     })
   }
 }

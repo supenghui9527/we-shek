@@ -182,24 +182,16 @@ Page({
   //点赞
   onLikes(e) {
     let cID = e.currentTarget.dataset.cid;
-    getApp().modules.common.action.clickLikes({
-      WX: this,
+    getApp().$ajax({
+      httpUrl: getApp().api.likesUrl,
       data: {
         cID: cID,
         orgID: this.data.userID
       }
+    }).then(({ data }) => {
+      let currentTab = this.data.currentTab;
+      this.getPostings(currentTab);
     })
-    
-    // getApp().$ajax({
-    //   httpUrl: getApp().api.likesUrl,
-    //   data: {
-    //     cID: cID,
-    //     orgID: this.data.userID
-    //   }
-    // }).then(({ data }) => {
-    //   let currentTab = this.data.currentTab;
-    //   this.getPostings(currentTab);
-    // })
   },
   // 点击头像回到组织详情
   gopartydetail(e) {
