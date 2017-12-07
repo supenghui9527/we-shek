@@ -1,5 +1,5 @@
 <!--pages/home/searchList/searchList.wxml-->
-<import src="../listItem/listItem.wxml" />
+<import src="../../common/listItem/listItem.wxml" />
 <view class='search_list'>
   <view style='height:90rpx'></view>
   <view class="search_container">

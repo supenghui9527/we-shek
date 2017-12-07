@@ -65,7 +65,10 @@
   float: left;
 }
 .time view:nth-child(2){
-  padding-left:100rpx;
+  padding-left:80rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .time view:nth-child(1) text:nth-child(1),.time view:nth-child(2) text:nth-child(1){
   padding-right:20rpx;

@@ -1,5 +1,5 @@
 <!--group.wxml-->
-<import src="../footbar/footbar.wxml" />
+<import src="../common/footbar/footbar.wxml" />
 <view class="user">
   <view>
     <image catchtap="changeAvatar" class="avatar" src="{{datas.orgBean.headThumb==null?'/images/people.png':datas.orgBean.headThumb}}"></image>

@@ -1,5 +1,5 @@
 /* group.wxss */
-@import "../footbar/footbar.wxss";
+@import "../common/footbar/footbar.wxss";
 .user{
   width:100%;
   height:360rpx;

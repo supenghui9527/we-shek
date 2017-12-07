@@ -1,6 +1,6 @@
 /* pages/home/home.wxss */
-@import "./listItem/listItem.wxss";
-@import "../footbar/footbar.wxss";
+@import "../common/listItem/listItem.wxss";
+@import "../common/footbar/footbar.wxss";
 .home{
   width:100%;
   background-color:#fff;

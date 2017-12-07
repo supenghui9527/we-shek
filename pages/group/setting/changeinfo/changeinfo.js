@@ -17,24 +17,19 @@ Page({
   //保存党组织信息
   onSave(e){
     let data = e.detail.value;
-    wx.request({
-      url: getApp().globalData.domain + 'modifyOrg.do',
-      method: 'post',
-      data: data,
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
-      success: (res) => {
-        if (res.data.state == 1) {
-          wx.showToast({
-            title: res.data.message,
-            mask: true,
-            success: (res) => {
-              wx.navigateBack({
-                delta: 2
-              })
-            }
+    getApp().$ajax({
+      httpUrl: getApp().api.saveUserInfoUrl,
+      data: data
+    }).then(({data,message})=>{
+      wx.showToast({
+        title: message,
+        mask: true,
+        success: (res) => {
+          wx.navigateBack({
+            delta: 2
           })
         }
-      }
+      })
     })
   }
 })

@@ -1,10 +1,10 @@
 <!--pages/home/home.wxml-->
-<import src="listItem/listItem.wxml" />
-<import src="../footbar/footbar.wxml" />
+<import src="../common/listItem/listItem.wxml" />
+<import src="../common/footbar/footbar.wxml" />
 <view class="home">
   <!--发帖入口-->
   <view class="publish">
-    <!-- <image catchtap="goPublish" data-posttype="1" hidden="{{show ? false : true}}" src="/images/btn2.png"></image> -->
+    <image catchtap="goPublish" data-posttype="1" hidden="{{show ? false : true}}" src="/images/btn2.png"></image>
     <image hidden="{{show ? false : true}}" data-posttype="0" src="/images/btn3.png" catchtap="goPublish"></image>
     <image catchtap="onAnimate" class="{{show==true?'animate':'backAnimate'}}" src="/images/btn1.png"></image>
   </view>
@@ -18,6 +18,7 @@
   </view>
   <view style="height:90rpx;width:100%"></view>
   <!--全部列表-->
+  <!-- <button open-type='share'>测试分享</button> -->
   <view class="list-container">
     <swiper wx:if="{{currentTab==0&&!searchShow}}" indicator-dots="true" interval="5000" autoplay="{true" style="width:100%;height:400rpx;">
       <block wx:for="{{communityTop}}" wx:key="*this">

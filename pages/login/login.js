@@ -6,59 +6,34 @@ Page({
   onLoad: function (options) {
   },
   //获取用户名
-  getUser(e){
+  getUser(e) {
     this.setData({
       user: e.detail.value
     })
   },
   //获取用户密码
-  getPwd(e){
+  getPwd(e) {
     let pwd = utilMd5.hexMD5(e.detail.value);
     this.setData({
       pwd: pwd
     })
   },
   //点击登录
-  onLogin(){
-    let ctx = this;
-    wx.request({
-      url: getApp().globalData.domain+'login.do',
-      method:'get',
+  onLogin() {
+    getApp().$ajax({
+      wxApp: this,
+      httpUrl: getApp().api.loginUrl,
       data: {
-        orgNumber:this.data.user,
-        password:this.data.pwd
+        orgNumber: this.data.user,
+        password: this.data.pwd
       },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        let datas = res.data.data;
-        if (res.data.state==1){
-          wx.setStorage({//存储党组织id
-            key: "userID",
-            data: datas.orgID
-          });
-          wx.setStorage({
-            key: "orgName",//存储党组织名称
-            data: datas.orgName
-          });
-          wx.setStorage({
-            key: "higherOrgID",//存储上级ID
-            data: datas.higherOrgID
-          });
-          wx.setStorage({
-            key: "accessToken",//存储密码
-            data: datas.accessToken
-          });
-          wx.redirectTo({//登录成功跳转到首页
-            url: '/pages/home/home'
-          })
-        } else{
-          ctx.setData({//登录失败提示错误信息
-            err: res.data.message
-          })
-        }
-      }
+      title:'登陆中...'
+    }).then(({ data }) => {
+      wx.hideLoading();
+      wx.setStorageSync('userInfo', data)
+      wx.redirectTo({ //登录成功跳转到首页
+        url: '/pages/home/home',
+      })
     })
   }
 })

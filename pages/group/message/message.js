@@ -5,27 +5,20 @@ Page({
   },
   onLoad: function (options) {
     //获取消息列表
-    wx.request({
-      url: getApp().globalData.domain + 'findAllMessage.do',
-      method: 'get',
+    getApp().$ajax({
+      httpUrl: getApp().api.getMessagesUrl,
       data: {
-        orgID: wx.getStorageSync('userID')
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if (res.data.state == 1) {
-          let datas = res.data.data.messageList;
-          for (let i = 0; i < datas.length;i++){
-            datas[i].msgCreateTime = datas[i].msgCreateTime.substring(0,10); 
-          }
-          this.setData({
-            datas: datas
-          })
-        }
+        orgID: wx.getStorageSync('userInfo').orgID
       }
-    });
+    }).then(({data})=>{
+      let datas = data.messageList;
+      for (let i = 0; i < datas.length; i++) {
+        datas[i].msgCreateTime = datas[i].msgCreateTime.substring(0, 10);
+      }
+      this.setData({
+        datas: datas
+      })
+    })
   },
   //显示消息详情
   showMessage(e){
@@ -41,58 +34,43 @@ Page({
     })
   },
   noHide(){
-
   },
   //是否同意下级删除党员请求
   agree(e){
     let data = e.currentTarget.dataset;
-    wx.request({
-      url: getApp().globalData.domain + 'backMessage.do',
-      method: 'get',
+    getApp().$ajax({
+      httpUrl: getApp().api.sureMessageUrl,
       data: {
         userID: data.userid,
         msgID: data.msgid,
         agree: data.agree
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if (res.data.state == 1) {
-          wx.showToast({
-            title: '操作成功',
-            success:(res)=>{
-              this.setData({
-                messageIndex: null
-              })
-            }
+      }
+    }).then(({ data }) => {
+      wx.showToast({
+        title: '操作成功',
+        success: (res) => {
+          this.setData({
+            messageIndex: null
           })
         }
-      }
-    });
+      })
+    })
   },
   //删除消息
   delMessage(e){
     let data = e.currentTarget.dataset;
-    wx.request({
-      url: getApp().globalData.domain + 'deleteMesage.do',
-      method: 'get',
+    getApp().$ajax({
+      httpUrl: getApp().api.deleteMesageUrl,
       data: {
         msgID: data.msgid
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if (res.data.state == 1) {
-          wx.showToast({
-            title: '删除成功',
-            success: (res) => {
-              this.onLoad();
-            }
-          })
-        }
       }
+    }).then(({ data }) => {
+      wx.showToast({
+        title: '删除成功',
+        success: (res) => {
+          this.onLoad();
+        }
+      })
     })
   }
 })

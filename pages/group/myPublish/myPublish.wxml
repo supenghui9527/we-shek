@@ -1,4 +1,5 @@
 <!--pages/group/myPublish/myPublish.wxml-->
+<view class='noData' wx:if="{{myworks.length==0}}">暂无查询到帖子</view>
 <block wx:for="{{myworks}}" wx:key="*this">
   <view data-cType="{{item.cType}}" data-cid="{{item.cID}}" catchtap="godetail" class="list_item clearfix">
     <view>

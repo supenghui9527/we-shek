@@ -6,29 +6,21 @@ Page({
   onLoad: function (options) {
     //获取帐号发的帖子
     let date = new Date(), month = date.getMonth() + 1;
-    wx.request({
-      url: getApp().globalData.domain + 'findMeetingByOrgID.do',
-      method: 'get',
+    getApp().$ajax({
+      httpUrl: getApp().api.getAlreadyPostingsUrl,
       data: {
-        orgID: wx.getStorageSync('userID'),
-        mType : 1
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if (res.data.state == 1) {
-          let datas = res.data.data;
-          for(let i=0;i<datas.length;i++ ){
-            datas[i].month = new Date((datas[i].createTime.replace(/-/g, '/'))).getMonth()+1+'月';
-            datas[i].day = new Date((datas[i].createTime.replace(/-/g, '/'))).getDate();
-          }
-          this.setData({
-            myworks: datas
-          })
-          console.log(this.data.myworks);
-        }
+        orgID: wx.getStorageSync('userInfo').orgID,
+        mType: 1
       }
+    }).then(({data})=>{
+      for (let i = 0; i < data.length; i++) {
+        data[i].month = new Date((data[i].createTime.replace(/-/g, '/'))).getMonth() + 1 + '月';
+        data[i].day = new Date((data[i].createTime.replace(/-/g, '/'))).getDate();
+      }
+      this.setData({
+        myworks: data
+      })
+      wx.hideLoading();
     })
   },
   // 到帖子详情

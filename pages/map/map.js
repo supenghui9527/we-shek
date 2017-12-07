@@ -41,28 +41,19 @@ Page({
     });
   },
   // 获取所有marker的信息
-  getMarkers(){
-    wx.request({
-      url: getApp().globalData.domain + 'findAllPosition.do',
-      method: 'get',
-      data: {
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if (res.data.state == 1) {
-          let markers = [];
-          for (let item of res.data.data) {
-            let marker = this.createMarker(item);
-            markers.push(marker)
-          }
-          // return markers;
-          this.setData({
-            markers: markers
-          })
-        }
+  getMarkers() {
+    getApp().$ajax({
+      httpUrl: getApp().api.getMapMarkesUrl
+    }).then(({ data }) => {
+      let markers = [];
+      for (let item of data) {
+        let marker = this.createMarker(item);
+        markers.push(marker)
       }
+      this.setData({
+        markers: markers
+      })
+      wx.hideLoading();
     })
   },
   // 创建地图的marker
@@ -75,20 +66,20 @@ Page({
       name: point.orgName || '',
       latitude: latitude,
       longitude: longitude,
-      width: 21.5,
-      height: 30
+      width: 28.7,
+      height: 40
     };
-    if (point.positionType==1){
+    if (point.positionType == 1) {
       marker.iconPath = "/images/color5.png"
-    } else if (point.positionType == 2){
+    } else if (point.positionType == 2) {
       marker.iconPath = "/images/color3.png"
-    } else if (point.positionType == 3){
+    } else if (point.positionType == 3) {
       marker.iconPath = "/images/color1.png"
-    } else if (point.positionType == 4){
+    } else if (point.positionType == 4) {
       marker.iconPath = "/images/color6.png"
-    } else if (point.positionType == 5){
+    } else if (point.positionType == 5) {
       marker.iconPath = "/images/color2.png"
-    }else{
+    } else {
       marker.iconPath = "/images/color4.png"
     }
     return marker;
@@ -98,80 +89,56 @@ Page({
   },
   // 点击marker点
   markertap(e) {
-    wx.showLoading({
-      title: '加载中...',
-      mask:true
-    });
-    wx.request({
-      url: getApp().globalData.domain + 'findPositionDetail.do',
-      method: 'get',
+    getApp().$ajax({
+      httpUrl: getApp().api.markeDetailUrl, 
       data: {
         positionID: e.markerId
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if (res.data.state == 1) {
-          wx.hideLoading();
-          this.setData({
-            showDetail: true,
-            detail: res.data.data
-          });
-          wx.setStorageSync('detail', res.data.data);
-          myAmapFun.getDrivingRoute({
-            origin: `${this.data.centerX},${this.data.centerY}`,
-            destination: `${res.data.data.lng},${res.data.data.lat}`,
-            success: (data) => {
-              var points = [];
-              if (data.paths && data.paths[0] && data.paths[0].steps) {
-                var steps = data.paths[0].steps;
-                for (var i = 0; i < steps.length; i++) {
-                  var poLen = steps[i].polyline.split(';');
-                  for (var j = 0; j < poLen.length; j++) {
-                    points.push({
-                      longitude: parseFloat(poLen[j].split(',')[0]),
-                      latitude: parseFloat(poLen[j].split(',')[1])
-                    })
-                  }
-                }
-              }
-              this.setData({
-                polyline: [{
-                  points: points,
-                  color: "#0091ff",
-                  width: 6
-                }]
-              });
-              if (data.paths[0] && data.paths[0].distance) {
-                this.setData({
-                  distance: `距您${(data.paths[0].distance/1000).toFixed(2)}公里`
-                });
-              }
-              if (data.taxi_cost) {
-                this.setData({
-                  cost: '打车约' + parseInt(data.taxi_cost) + '元'
-                });
-              }
-
-            },
-            fail: function (info) {
-
-            }
-          });
-        }
       }
-    })
-  },
-  // 点击导航
-  goNavigate(){
-    let detail = wx.getStorageSync('detail');
-    wx.openLocation({
-      latitude: detail.lat*1,
-      longitude: detail.lng*1,
-      scale: 18,
-      name: detail.employer,
-      address: detail.positionAddress
+    }).then(({ data }) => {
+      this.setData({
+        showDetail: true,
+        detail: data
+      });
+      wx.setStorageSync('detail', data);
+      myAmapFun.getDrivingRoute({
+        origin: `${this.data.centerX},${this.data.centerY}`,
+        destination: `${data.lng},${data.lat}`,
+        success: (data) => {
+          var points = [];
+          if (data.paths && data.paths[0] && data.paths[0].steps) {
+            var steps = data.paths[0].steps;
+            for (var i = 0; i < steps.length; i++) {
+              var poLen = steps[i].polyline.split(';');
+              for (var j = 0; j < poLen.length; j++) {
+                points.push({
+                  longitude: parseFloat(poLen[j].split(',')[0]),
+                  latitude: parseFloat(poLen[j].split(',')[1])
+                })
+              }
+            }
+          }
+          this.setData({
+            polyline: [{
+              points: points,
+              color: "#0091ff",
+              width: 6
+            }]
+          });
+          if (data.paths[0] && data.paths[0].distance) {
+            this.setData({
+              distance: `距您${(data.paths[0].distance / 1000).toFixed(2)}公里`
+            });
+          }
+          if (data.taxi_cost) {
+            this.setData({
+              cost: '打车约' + parseInt(data.taxi_cost) + '元'
+            });
+          }
+        },
+        fail: function (info) {
+        }
+      });
+      wx.hideLoading();
     })
   },
   // 地图控件
@@ -186,7 +153,7 @@ Page({
     })
   },
   // 详情
-  goDetail(){
+  goDetail() {
     wx.navigateTo({
       url: `./detail/detail`,
     })

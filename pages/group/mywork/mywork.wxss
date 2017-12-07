@@ -4,7 +4,9 @@
   text-align: center;
   padding: 65rpx 0;
 }
-
+.noData{
+  text-align: center;
+}
 .date image {
   width: 14rpx;
   height: 28rpx;

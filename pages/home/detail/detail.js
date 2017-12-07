@@ -1,161 +1,126 @@
 // pages/detail/detail.js
 Page({
   data: {
-    community:[],
-    cID:0,
-    show:true
+    community: [],
+    cID: 0,
+    show: true
   },
   onLoad: function (option) {
-    let ctx = this;
     // 获取userID
     this.setData({
-      types:option.cType,
-      cID:option.cID,
-      userID: wx.getStorageSync('userID'),
+      types: option.cType,
+      cID: option.cID,
+      userID: wx.getStorageSync('userInfo').orgID,
       option: option
     });
     //查询帖子详情
-    wx.request({
-      url: getApp().globalData.domain+'/findCommunityByCID.do',
-      method: 'get',
+    getApp().$ajax({
+      httpUrl: getApp().api.postingsDetailUrl,
       data: {
         cID: this.data.cID
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        let datas = res.data.data;
-        datas.isDetail = false;
-        datas.userID = wx.getStorageSync('userID');
-        datas.type=['党课','支委会','党员大会','党小组会'];
-        if (res.data.state == 1) {
-          ctx.setData({
-            community: datas
-          })
-        } else {
-        }
       }
+    }).then(({ data }) => {
+      data.isDetail = false;
+      data.userID = wx.getStorageSync('userInfo').orgID;
+      data.type = ['党课', '支委会', '党员大会', '党小组会'];
+      this.setData({
+        community: data
+      })
     });
     //查询帖子对应评论
-    wx.request({
-      url: getApp().globalData.domain + '/findComment.do',
-      method: 'get',
+    getApp().$ajax({
+      httpUrl: getApp().api.postingsCommentUrl,
       data: {
         cID: this.data.cID
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        let datas = res.data.data;
-        if (res.data.state == 1) {
-          ctx.setData({
-            comment: datas.comment
-          })
-        } else {
-        }
       }
+    }).then(({ data }) => {
+      this.setData({
+        comment: data.comment
+      })
     });
     // 查询帖子对应点赞
-    wx.request({
-      url: getApp().globalData.domain + '/findlikeUserByCID.do',
-      method: 'get',
+    getApp().$ajax({
+      httpUrl: getApp().api.postingsLikesUrl,
       data: {
         cID: this.data.cID
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        let datas = res.data.data;
-        if (res.data.state == 1) {
-          ctx.setData({
-            likes: datas
-          })
-        } else {
-        }
       }
+    }).then(({ data }) => {
+      this.setData({
+        likes: data
+      })
+      wx.hideLoading();
     });
   },
   //点赞
   onLikes(e) {
-    let cID = this.data.cID;
-    wx.request({
-      url: getApp().globalData.domain + 'likeCommunity.do',
-      method: 'post',
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
+    getApp().$ajax({
+      httpUrl: getApp().api.likesUrl,
       data: {
-        cID: cID,
+        cID: this.data.cID,
         orgID: this.data.userID
-      },
-      success: (res) => {
-        let datas = res.data.data;
-        if (res.data.state == 1) {
-          this.onLoad(this.data.option);
-        }
       }
-    })
+    }).then(({ data }) => {
+      this.onLoad(this.data.option);
+    });
+  },
+  onShareAppMessage: function (res) {
+    return {
+      title: '自定义转发标题',
+      path: `/pages/home/detail/detail?cID=${this.data.cID}`,
+      success: function (res) {
+        console.log(res)
+      },
+      fail: function (res) {
+      }
+    }
   },
   //显示评论输入模块
-  showComment(){
+  showComment() {
     this.setData({
-      show:!this.data.show
+      show: !this.data.show
     })
   },
   //获取输入评论内容
-  getComment(e){
+  getComment(e) {
     this.setData({
       content: e.detail.value
     })
   },
   //保存评论内容
-  saveComment(){
-    wx.request({
-      url: getApp().globalData.domain + 'releaseCommentToCommunity.do',
-      method: 'post',
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
+  saveComment() {
+    getApp().$ajax({
+      httpUrl: getApp().api.savePostingsCommentUrl,
       data: {
         cID: this.data.cID,
         orgID: this.data.userID,
         content: this.data.content
-      },
-      success: (res) => {
-        let datas = res.data.data;
-        if (res.data.state == 1) {
-          this.showComment();
-          this.onLoad(this.data.option);
-        }
       }
-    })
+    }).then(({ data }) => {
+      this.showComment();
+      this.onLoad(this.data.option);
+    });
   },
   //删除帖子
-  delPublish(e){
+  delPublish(e) {
     wx.showModal({
       content: '确认删除',
-      success: (res)=> {
+      success: (res) => {
         if (res.confirm) {
-          wx.request({
-            url: getApp().globalData.domain + 'deleteComunity.do',
-            method: 'post',
-            header: { "Content-Type": "application/x-www-form-urlencoded" },
+          getApp().$ajax({
+            httpUrl: getApp().api.deletePostingsUrl,
             data: {
               cID: this.data.cID
-            },
-            success: (res) => {
-              let datas = res.data.data;
-              if (res.data.state == 1) {
-                wx.showToast({
-                  title: res.data.message,
-                  success:(res)=>{
-                    wx.redirectTo({
-                      url: '/pages/home/home'
-                    })
-                  }
+            }
+          }).then(({ data, message }) => {
+            wx.showToast({
+              title: message,
+              success: (res) => {
+                wx.redirectTo({
+                  url: '/pages/home/home'
                 })
               }
-            }
-          })
+            })
+          });
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -164,14 +129,6 @@ Page({
   },
   //点击图片预览
   showBigPic(e) {
-    let img = e.currentTarget.dataset.img,
-      imgUrl = e.currentTarget.dataset.imgurl,
-      urls = [];
-    for (let i = 0; i < img.length; i++) {
-      urls[i] = imgUrl + img[i];
-    }
-    wx.previewImage({
-      urls: urls
-    })
+    getApp().showBigPic(e);
   }
 })

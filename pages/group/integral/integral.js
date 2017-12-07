@@ -64,53 +64,40 @@ Page({
     });
     setTimeout(() => {
       //获取当前帐号的排名信息
-      wx.request({
-        url: getApp().globalData.domain + 'findMyPoint.do',
-        method: 'get',
+      getApp().$ajax({
+        httpUrl: getApp().api.findMyPointUrl,
         data: {
-          orgID: wx.getStorageSync('userID')
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: (res) => {
-          if (res.data.state == 1) {
-            let datas = res.data.data, Ptype = this.data.Ptype;
-            for (let i = 0; i < Ptype.length; i++) {
-              if (Ptype[i].pname == '党小组会') {
-                Ptype[i].nub = datas.dxzh;
-                continue;
-              } else if (Ptype[i].pname == '支委会') {
-                Ptype[i].nub = datas.zwh;
-                continue;
-              } else if (Ptype[i].pname == '党员大会') {
-                Ptype[i].nub = datas.dydh;
-                continue;
-              } else if (Ptype[i].pname == '党课') {
-                Ptype[i].nub = datas.dk;
-                continue;
-              } else if (Ptype[i].pname == '党日活动') {
-                Ptype[i].nub = datas.drhd;
-                continue;
-              } else if (Ptype[i].pname == '下级汇报') {
-                Ptype[i].nub = datas.xj;
-                continue;
-              }
-            }
-            this.setData({
-              datas: datas,
-              Ptype: this.data.Ptype
-            })
-            wx.hideLoading();
+          orgID: wx.getStorageSync('userInfo').orgID
+        }
+      }).then(({data})=>{
+        let Ptype = this.data.Ptype;
+        for (let i = 0; i < Ptype.length; i++) {
+          if (Ptype[i].pname == '党小组会') {
+            Ptype[i].nub = data.dxzh;
+            continue;
+          } else if (Ptype[i].pname == '支委会') {
+            Ptype[i].nub = data.zwh;
+            continue;
+          } else if (Ptype[i].pname == '党员大会') {
+            Ptype[i].nub = data.dydh;
+            continue;
+          } else if (Ptype[i].pname == '党课') {
+            Ptype[i].nub = data.dk;
+            continue;
+          } else if (Ptype[i].pname == '党日活动') {
+            Ptype[i].nub = data.drhd;
+            continue;
+          } else if (Ptype[i].pname == '下级汇报') {
+            Ptype[i].nub = data.xj;
+            continue;
           }
         }
-      });
-      //有缓存取缓存没有请求数据
-      // if (wx.getStorageSync('list')) {
-      //   this.setData({
-      //     list: wx.getStorageSync('list')
-      //   })
-      // } else {
+        this.setData({
+          datas: data,
+          Ptype: this.data.Ptype
+        })
+        wx.hideLoading();
+      })
       this.setDate();
       this.getData(this.data.active, 0, nowDate);
     }, 20)
@@ -144,39 +131,27 @@ Page({
   },
   //获取数据
   getData: function (orgType, orderType, pointTime) {
-    wx.showLoading({
-      title: '加载中...',
-      mask: true
-    })
-    wx.request({
-      url: getApp().globalData.domain + 'findOrgOrder.do',
-      method: 'get',
+    getApp().$ajax({
+      httpUrl: getApp().api.pointListUrl,
       data: {
         orgType: orgType,
         orderType: orderType,
         pointTime: pointTime
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if (res.data.state == 1) {
-          let datas = res.data.data;
-          if (datas == '') {
-            this.setData({
-              list: datas
-            });
-            wx.hideLoading();
-            return;
-          }
-          wx.setStorageSync('list', datas);
-          this.setData({
-            list: datas
-          })
-          wx.hideLoading();
-        }
       }
-    });
+    }).then(({data})=>{
+      if (data == '') {
+        this.setData({
+          list: data
+        });
+        wx.hideLoading();
+        return;
+      }
+      wx.setStorageSync('list', data);
+      this.setData({
+        list: data
+      })
+      wx.hideLoading();
+    })
   },
   //处理年月格式
   setDate: function () {

@@ -6,6 +6,7 @@
   <image class="right" catchtap="right" src="/images/icon-_riangle-_left.png"></image>
 </view>
 <!--我的近期工作列表-->
+<view class='noData' wx:if="{{myworks.length==0}}">暂无近期工作,请前往添加</view>
 <view catchtap="goDetail" data-workStatus="{{item.workStatus}}" data-title="{{item.workTitle}}" data-content="{{item.workContent}}" data-workID ="{{item.workID}}" wx:for="{{myworks}}" wx:key="*this" class="worklist">
   <view class="work_date">
     <text>{{item.workeDate}}</text>

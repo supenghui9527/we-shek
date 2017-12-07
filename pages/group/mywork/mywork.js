@@ -2,7 +2,6 @@
 let year = new Date().getFullYear(), month = new Date().getMonth()+1;
 Page({
   data: {
-  
   },
   onLoad: function (options) {
     this.setData({
@@ -12,31 +11,20 @@ Page({
   },
   //获取近期工作的方法
   getData(){
-    wx.showLoading({
-      title: '加载中...'
-    });
-    wx.request({
-      url: getApp().globalData.domain + 'findMyWork.do',
-      method: 'get',
+    getApp().$ajax({
+      httpUrl: getApp().api.getMyWorkUrl,
       data: {
-        orgID: wx.getStorageSync('userID'),
+        orgID: wx.getStorageSync('userInfo').orgID,
         date: this.data.date
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if (res.data.state == 1) {
-          let datas = res.data.data;
-          wx.hideLoading();
-          for(let i =0;i<datas.length;i++){
-            datas[i].workeDate = datas[i].workCreateDate.substr(8,10);
-          }
-          this.setData({
-            myworks: datas
-          })
-        }
       }
+    }).then(({ data }) => {
+      for (let i = 0; i < data.length; i++) {
+        data[i].workeDate = data[i].workCreateDate.substr(8, 10);
+      }
+      this.setData({
+        myworks: data
+      })
+      wx.hideLoading();
     })
   },
   // 日期选择左边
@@ -86,26 +74,20 @@ Page({
   },
   //删除近期工作
   delWork(e){
-    wx.request({
-      url: getApp().globalData.domain + 'deleteWork.do',
-      method: 'get',
+    getApp().$ajax({
+      httpUrl: getApp().api.deleteWorkUrl,
       data: {
-        workID: e.currentTarget.dataset.workid
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if (res.data.state == 1) {
-          wx.showToast({
-            title: '删除成功',
-            duration:1000,
-            success:(res)=>{
-              this.onLoad();
-            }
-          })
-        }
+        workID: e.currentTarget.dataset.workide
       }
+    }).then(({ data }) => {
+      wx.showToast({
+        title: '删除成功',
+        duration: 1000,
+        success: (res) => {
+          this.onLoad();
+        }
+      })
+      wx.hideLoading();
     })
   }
 })

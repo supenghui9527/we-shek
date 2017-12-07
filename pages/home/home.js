@@ -4,72 +4,70 @@ Page({
   data: {
     footbar: {
       home: true,
-      map: false,
+      data: false,
       mine: false
     },
     userID: 0,
     community: [],
     scrollTop: 0,
     interval: true,
-    pageIndex:1,
-    pageCount:'',
+    pageIndex: 1,
+    pageCount: '',
     show: false,
     current: 0,
     currentTab: 0,
     communityCount: 0,
-    nav: ['全部', '党员大会', '支委会', '党小组会','党课']
+    nav: ['全部', '党员大会', '支委会', '党小组会', '党课']
   },
   onLoad: function (options) {
     this.getData(20, -1, -1);
     wx.getSystemInfo({
       success: (res) => {
         this.setData({
-          scrollHeight: res.windowHeight
+          scrollHeight: res.windowHeight,
+          userID: wx.getStorageSync('userInfo').orgID
         });
       }
     });
-    wx.getStorage({
-      key: 'userID',
-      success: (res) => {
-        this.setData({
-          userID: res.data
-        });
+  },
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '自定义转发标题',
+      path: '/page/map/map',
+      success: function (res) {
+        console.log(res)
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
       }
-    })
+    }
   },
   //获取数据方法
   getData(pageNub, cType, meetingType) {
-    wx.showLoading({
-      mask: true,
-      title: '加载中...'
-    })
-    wx.request({
-      url: getApp().globalData.domain + 'findCommunityHomePage.do',
-      method: 'get',
+    getApp().$ajax({
+      httpUrl: getApp().api.getPostingsUrl,
       data: {
         pageNumber: pageNub,
         cType: cType,
         meetingType: meetingType
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        wx.stopPullDownRefresh();
-        let datas = res.data.data;
-        for (let i = 0; i < datas.community.length; i++) {
-          datas.community[i].isDetail = true;
-          datas.community[i].type = ['党课', '支委会', '党员大会', '党小组会'];
-        }
-        if (res.data.state == 1) {
-          wx.hideLoading();
-          this.setData({
-            community: datas.community,
-            communityCount: datas.communityCount,
-            communityTop: datas.communityTop
-          })
-        }
       }
+    }).then(({ data }) => {
+      wx.stopPullDownRefresh();
+      for (let i = 0; i < data.community.length; i++) {
+        data.community[i].isDetail = true;
+        data.community[i].type = ['党课', '支委会', '党员大会', '党小组会'];
+      };
+      this.setData({
+        community: data.community,
+        communityCount: data.communityCount,
+        communityTop: data.communityTop
+      });
+      wx.hideLoading();
     })
   },
   //下拉刷新
@@ -107,38 +105,26 @@ Page({
   //上拉加在更多
   reachData: function (pageNumber, pageIndex, cType, meetingType) {
     //判断页码总数减去当前页码是否还存在下一页
-    if (this.data.pageCount - this.data.pageIndex>= 0) {
-      wx.showLoading({
-        mask: true,
-        title: '加载中...'
-      })
-      wx.request({
-        url: getApp().globalData.domain + 'findCommunityMore.do',
-        method: 'get',
+    if (this.data.pageCount - this.data.pageIndex >= 0) {
+      getApp().$ajax({
+        httpUrl: getApp().api.getMorePostingUrl,
         data: {
           pageNumber: pageNumber,
           pageIndex: pageIndex,
           cType: cType,
           meetingType: meetingType
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        success: (res) => {
-          if (res.data.state == 1) {
-            wx.stopPullDownRefresh();
-            let datas = res.data.data;
-            //区分模版是在详情页面调用还是主页
-            for (let i = 0; i < datas.community.length; i++) {
-              datas.community[i].isDetail = true;
-            }
-            const publishs = this.data.community.concat(datas.community);
-            wx.hideLoading();
-            this.setData({
-              community: publishs
-            })
-          }
         }
+      }).then(({ data }) => {
+        wx.stopPullDownRefresh();
+        //区分模版是在详情页面调用还是主页
+        for (let i = 0; i < data.community.length; i++) {
+          data.community[i].isDetail = true;
+        }
+        const publishs = this.data.community.concat(data.community);
+        this.setData({
+          community: publishs
+        })
+        wx.hideLoading();
       })
     }
   },
@@ -169,7 +155,7 @@ Page({
   bindChange: function (e) {
     this.setData({ currentTab: e.detail.current });
   },
-  //点击加显示发帖
+  //点击+显示发帖
   onAnimate() {
     this.setData({
       show: !this.data.show
@@ -196,21 +182,24 @@ Page({
   //点赞
   onLikes(e) {
     let cID = e.currentTarget.dataset.cid;
-    wx.request({
-      url: getApp().globalData.domain + 'likeCommunity.do',
-      method: 'post',
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
+    getApp().modules.common.action.clickLikes({
+      WX: this,
       data: {
         cID: cID,
         orgID: this.data.userID
-      },
-      success: (res) => {
-        let datas = res.data.data,currentTab = this.data.currentTab;
-        if (res.data.state == 1) {
-          this.getPostings(currentTab);
-        }
       }
     })
+    
+    // getApp().$ajax({
+    //   httpUrl: getApp().api.likesUrl,
+    //   data: {
+    //     cID: cID,
+    //     orgID: this.data.userID
+    //   }
+    // }).then(({ data }) => {
+    //   let currentTab = this.data.currentTab;
+    //   this.getPostings(currentTab);
+    // })
   },
   // 点击头像回到组织详情
   gopartydetail(e) {
@@ -220,21 +209,11 @@ Page({
     })
   },
   //点击图片预览
-  showBigPic(e){
-    let img = e.currentTarget.dataset.img,//帖子图片的名字
-    imgUrl = e.currentTarget.dataset.imgurl,//帖子图片地址
-    urls=[];
-    //循环组装成数组里面为网络地址
-    for(let i=0;i<img.length;i++){
-      urls[i] = imgUrl + img[i];
-    }
-    //浏览大图
-    wx.previewImage({
-      urls: urls
-    })
+  showBigPic(e) {
+    getApp().showBigPic(e);
   },
   // 搜索
-  showSearch(){
+  showSearch() {
     wx.navigateTo({
       url: '/pages/home/searchList/searchList'
     })

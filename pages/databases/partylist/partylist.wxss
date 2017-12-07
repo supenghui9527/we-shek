@@ -1,5 +1,5 @@
 /* pages/databases/partylist/partylist.wxss */
-@import "../../footbar/footbar.wxss";
+@import "../../common/footbar/footbar.wxss";
 .listcontainer{
   position: relative;
   height: 100%;

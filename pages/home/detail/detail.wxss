@@ -1,108 +1,139 @@
-@import "../listItem/listItem.wxss";
-.detail{
-  height:100%;
-  width:100%;
-  position:relative !important;
+@import "../../common/listItem/listItem.wxss";
+
+.detail {
+  height: 100%;
+  width: 100%;
+  position: relative !important;
   overflow: hidden;
 }
-.detailcontainer{
+
+.detailcontainer {
   height: 100%;
   overflow-y: auto !important;
 }
-.postingsContainer{
+
+.postingsContainer {
   overflow: auto;
   height: 100%;
 }
-.commentContent{
-  font-size:30rpx;
+
+.commentContent {
+  font-size: 30rpx;
   display: flex;
 }
-.commentContent view view text:nth-child(1){
-  color:#7483a4;
+
+.commentContent view view text:nth-child(1) {
+  color: #7483a4;
 }
-.commentContent view view text:nth-child(2){
-  color:#000;
+
+.commentContent view view text:nth-child(2) {
+  color: #000;
 }
-.commentContent image,.likesContent image{
-  width:28rpx;
-  height:28rpx;
-  padding-right:20rpx;
+
+.commentContent image, .likesContent image {
+  width: 28rpx;
+  height: 28rpx;
+  padding-right: 20rpx;
 }
-.commentContent image{
-  padding-top:10rpx;
+
+.commentContent image {
+  padding-top: 10rpx;
 }
-.likesContent{
-  margin:20rpx 0;
+
+.likesContent {
+  margin: 20rpx 0;
 }
-.commentContent,.likesContent{
-  padding:0 45rpx 0 85rpx;
+
+.commentContent, .likesContent {
+  padding: 0 45rpx 0 85rpx;
 }
-.likesContent text{
-  font-size:30rpx;
-  color:#7483a4;
+
+.likesContent text {
+  font-size: 30rpx;
+  color: #7483a4;
 }
-.footer{
-  position:absolute;
-  left:0;
-  bottom:0;
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   display: flex;
-  width:100%;
-  border-top:1px solid #f0f0f0;
-  height:80rpx;
+  width: 100%;
+  border-top: 1px solid #f0f0f0;
+  height: 80rpx;
   z-index: 999;
   background: #fff;
 }
-.writeComment{
-  position:absolute;
-  left:0;
-  bottom:0;
+
+.writeComment {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   background: #f0f0f0;
-  height:100rpx;
-  width:100%;
+  height: 100rpx;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  z-index:9999;
+  z-index: 9999;
   justify-content: space-around;
 }
-.writeComment .btn{
-  height:60rpx;
-  width:100rpx;
+
+.writeComment .btn {
+  height: 60rpx;
+  width: 100rpx;
   background: #ca4341;
-  text-align:center;
-  border-radius:10rpx;
-  color:#fff;
-  font-size:30rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  color: #fff;
+  font-size: 30rpx;
   line-height: 60rpx;
 }
-.writeComment input{
-  width:580rpx;
+
+.writeComment input {
+  width: 580rpx;
   height: 60rpx;
   background: #fff;
-  padding:10rpx 20rpx;
-  box-sizing:border-box;
-  border-radius:10rpx;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
   font-size: 30rpx;
 }
-.footer view{
-  width:33.33%;
-  font-size:26rpx;
-  color:#646464;
+
+.footer view {
+  width: 33.33%;
+  font-size: 26rpx;
+  color: #646464;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.footer view image{
-  width:38rpx;
-  height:44rpx;
-  padding-right:20rpx;
+
+.footer view image {
+  width: 38rpx;
+  height: 44rpx;
+  padding-right: 20rpx;
 }
- .fixed{
-   position: absolute;
-   left: 0;
-   top:0;
-   z-index: 1000;
-   height:100%;
-   width:100%;
-   background-color: rgba(0,0,0,0.2);
- }
+
+.footer view button {
+  outline: none !important;
+  font-size: 26rpx !important;
+  background-color: transparent;
+  color: #646464;
+  padding: 0;
+  margin: 0;
+}
+
+button::after {
+  border: none;
+}
+
+.fixed {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}

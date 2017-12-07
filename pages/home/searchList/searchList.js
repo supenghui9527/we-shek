@@ -1,69 +1,56 @@
 // pages/home/searchList/searchList.js
 Page({
   data: {
-    community:{},
-    content:'',
-    count:null,
+    community: {},
+    content: '',
+    count: null,
     pageIndex: 1,
-    pageCount:''
+    pageCount: ''
   },
   onLoad: function (options) {
-    wx.getStorage({
-      key: 'userID',
-      success: (res) => {
-        this.setData({
-          userID: res.data
-        });
-      }
-    })
+    this.setData({
+      userID: wx.getStorageSync('userInfo').orgID
+    });
   },
-  hideSearch(){
+  // 取消搜索
+  hideSearch() {
     wx.navigateBack({
-      url:'/page/home/home'
+      url: '/page/home/home'
     })
   },
-  searchContent(e){
+  // 获取搜索内容
+  searchContent(e) {
     this.setData({
       content: e.detail.value
     })
   },
-  // 搜索
-  goSearch(){
-    this.getData(this.data.content,1)
+  // 确认搜索
+  goSearch() {
+    this.getData(this.data.content, 1)
   },
   // 获取搜索数据
-  getData(content,pageIndex){
-    wx.showLoading({
-      mask: true,
-      title: '加载中...'
-    })
-    wx.request({
-      url: getApp().globalData.domain + 'vagueSearch.do',
-      method: 'post',
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
+  getData(content, pageIndex) {
+    getApp().$ajax({
+      httpUrl: getApp().api.searchUrl,
       data: {
         content: content,
         pageNumber: 20,
         pageIndex: pageIndex
-      },
-      success: (res) => {
-        wx.hideLoading();
-        let datas = res.data.data;
-        for (let i = 0; i < datas.community.length; i++) {
-          datas.community[i].isDetail = true;
-          datas.community[i].type = ['党课', '支委会', '党员大会', '党小组会'];
-        }
-        if (res.data.state == 1) {
-          if(this.data.pageIndex>1){
-            var publishs = this.data.community.concat(datas.community);
-          }
-          this.setData({
-            community: publishs ? publishs : datas.community,
-            count: datas.count
-          })
-        }
       }
-    })
+    }).then(({ data }) => {
+      wx.hideLoading();
+      for (let i = 0; i < data.community.length; i++) {
+        data.community[i].isDetail = true;
+        data.community[i].type = ['党课', '支委会', '党员大会', '党小组会'];
+      }
+      if (this.data.pageIndex > 1) {
+        var publishs = this.data.community.concat(data.community);
+      }
+      this.setData({
+        community: publishs ? publishs : data.community,
+        count: data.count
+      })
+    });
   },
   // 下拉加载更多
   onReachBottom: function () {
@@ -87,21 +74,15 @@ Page({
   //点赞
   onLikes(e) {
     let cID = e.currentTarget.dataset.cid;
-    wx.request({
-      url: getApp().globalData.domain + 'likeCommunity.do',
-      method: 'post',
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
+    getApp().$ajax({
+      httpUrl: getApp().api.likesUrl,
       data: {
         cID: cID,
         orgID: this.data.userID
-      },
-      success: (res) => {
-        let datas = res.data.data, currentTab = this.data.currentTab;
-        if (res.data.state == 1) {
-          this.getData(this.data.content, 1)
-        }
       }
-    })
+    }).then(({ data }) => {
+      this.getData(this.data.content, 1)
+    });
   },
   // 点击进入详情
   goDetail(e) {
@@ -111,9 +92,10 @@ Page({
       url: '/pages/home/detail/detail?cType=' + cType + '&cID=' + cID
     })
   },
-  deletSearch(){
+  // 清除搜索内容
+  deletSearch() {
     this.setData({
-      content:'',
+      content: '',
       community: null
     })
   }

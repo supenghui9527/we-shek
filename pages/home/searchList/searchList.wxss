@@ -1,5 +1,5 @@
 /* pages/home/searchList/searchList.wxss */
-@import "../listItem/listItem.wxss";
+@import "../../common/listItem/listItem.wxss";
 .search_list{
   width:100%;
 }

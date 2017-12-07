@@ -1,0 +1,1 @@
+export const CLICK_LIKES = 'click/likes'

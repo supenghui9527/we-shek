@@ -1,4 +1,8 @@
 /* pages/group/myPublish/myPublish.wxss */
+.noData{
+  text-align: center;
+  color:#f11;
+}
 .list_item{
   width:100%;
   padding:0 30rpx;

@@ -1,4 +1,4 @@
-@import "../footbar/footbar.wxss";
+@import "../common/footbar/footbar.wxss";
 page {
   background-color: #eee;
 }

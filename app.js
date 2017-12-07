@@ -1,45 +1,28 @@
 //app.js
-let fnHttp = require('./utils/util.js');
+const util = require('./utils/util.js');
+const api = require('./store/api');
+const common = require('./store/modules/common');
 App({
   onLaunch: function () {
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
     //判断本地是否存有密码
-    if (wx.getStorageSync('accessToken')) {
+    if (wx.getStorageSync('userInfo')) {
       wx.redirectTo({
         url: '/pages/home/home'
       })
     }
   },
+  api,
+  modules:{
+    common
+  },
   onHide: function () {
     wx.removeStorageSync('groups');
     wx.removeStorageSync('list');
   },
-  getUserInfo:function(cb){
-    var that = this
-    if(this.globalData.userInfo){
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    }else{
-      //调用登录接口
-      wx.login({
-        success: function () {
-          wx.getUserInfo({
-            success: function (res) {
-              that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo)
-            }
-          })
-        }
-      })
-    }
-  },
-  //服务器地https://www.jshhfl.com/xwdj/'http://192.168.8.15:8183/xwdj/'
+  showBigPic: util.showBigPic, //点击图片浏览大图
+  $ajax: util.fnHttp,// 公用请求方法
   globalData:{
     userInfo:null,
-    host:'http://www.wsspha.cn/images',
-    domain: 'https://www.jshhfl.com/xwdj/',
-    $ajax: fnHttp.fnHttp
+    host:'http://www.wsspha.cn/images'
   }
 })

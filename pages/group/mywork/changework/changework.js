@@ -33,25 +33,19 @@ Page({
   changework(e){
     if (this.data.edit==false){
       let data = e.detail.value;
-      wx.request({
-        url: getApp().globalData.domain + 'modifyWork.do',
-        method: 'post',
-        data: data,
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        success: (res) => {
-          if (res.data.state == 1) {
-            wx.showToast({
-              title: '修改成功',
-              success: (res) => {
-                wx.navigateBack({
-                  delta: 1
-                })
-              }
+      getApp().$ajax({
+        httpUrl: getApp().api.changeWorkUrl,
+        data: data
+      }).then(({ data }) => {
+        wx.showToast({
+          title: '修改成功',
+          success: (res) => {
+            wx.navigateBack({
+              delta: 1
             })
           }
-        }
+        })
+        wx.hideLoading();
       })
     }
   },
@@ -88,25 +82,18 @@ Page({
   },
   //确定更改近期工作状态
   sureChange(){
-    wx.request({
-      url: getApp().globalData.domain + 'modifyWorkStatus.do',
-      method: 'get',
-      data: {
+    getApp().$ajax({
+      httpUrl: getApp().api.sureWorkUrl,
+      data:{
         workStatus: this.data.workStatus,
         workID: this.data.workID,
         reason: this.data.reason
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: (res) => {
-        if(res.data.state == 1) {
-          this.setData({
-            showChange:true
-          })
-          this.onLoad();
-        }
       }
+    }).then(({data})=>{
+      this.setData({
+        showChange: true
+      })
+      this.onLoad();
     })
   },
   //取消修改工作状态

@@ -10,31 +10,25 @@ Page({
   },
   onLoad: function (options) {
     // 计算当前日期
-    let date = new Date(),ctx = this,month = date.getMonth() + 1;
-    wx.getStorage({
-      key: 'userID',
-      success: function (res) {
-        ctx.setData({
-          userID: res.data,
-          date: date.getFullYear() + '-' + month + '-' + date.getDate(),
-          posttype: options.posttype
-        });
-      }
-    })
+    let date = new Date(),month = date.getMonth() + 1;
+    this.setData({
+      userID: wx.getStorageSync('userInfo').orgID,
+      date: date.getFullYear() + '-' + month + '-' + date.getDate(),
+      posttype: options.posttype
+    });
   },
   //选择本地相册中的图片
   upLoad() {
-    let ctx = this;
     wx.chooseImage({
-      success: function (res) {
+      success: (res)=> {
         let tempFilePaths = res.tempFilePaths;
-        if (ctx.data.tempFilePaths==''){
-          ctx.setData({
+        if (this.data.tempFilePaths==''){
+          this.setData({
             tempFilePaths: tempFilePaths
           })
         }else{
-          ctx.setData({
-            tempFilePaths: ctx.data.tempFilePaths.concat(tempFilePaths)
+          this.setData({
+            tempFilePaths: this.data.tempFilePaths.concat(tempFilePaths)
           })
         }
       }
@@ -55,9 +49,8 @@ Page({
   },
   //上传图片方法
   getData: function (tempFilePaths,successUp,failUp,i,length,cid) {
-    let ctx = this;
     wx.uploadFile({
-      url: getApp().globalData.domain + 'publicPic.do',
+      url: getApp().api.upLoadPicUrl,
       header: { "Content-Type": "multipart/form-data" }, 
       filePath: tempFilePaths[i],
       name: 'picName',
@@ -97,7 +90,7 @@ Page({
       mask: true
     });
     wx.request({
-      url: getApp().globalData.domain + 'publicCommunity.do',
+      url: getApp().api.pushPostingsUrl,
       method: 'post',
       header: { "Content-Type": "application/x-www-form-urlencoded" }, 
       data:data,
