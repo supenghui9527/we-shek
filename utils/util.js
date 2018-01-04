@@ -20,13 +20,13 @@ function fnHttp({ wxApp = false, httpUrl, data = {}, method = 'post', title = "å
       url: httpUrl,
       method: method,
       data: data,
-      header: { "Content-Type": "application/x-www-form-urlencoded" },
+      header: method === 'post' ? { "Content-Type": "application/x-www-form-urlencoded" } : { 'content-type': 'application/json' },
       success: ({ data: { data, message, state } }) => {
         if (state == 1) {
           resolve({ data: data, message });
         } else {
           wx.hideLoading();
-          wxApp != false ? wxApp.setData({ err: message }) : wx.showToast({ title: message})
+          wxApp != false ? wxApp.setData({ err: message }) : wx.showToast({ title: message })
         }
       },
       fail: (err) => {

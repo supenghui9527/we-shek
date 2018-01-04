@@ -1,0 +1,3 @@
+<!--pages/map//navigation_car/navigation.wxml-->
+<import src="/pages/common/navigation/navigation.wxml"/>
+<template is="navigation" data="{{...footbar}}"></template>

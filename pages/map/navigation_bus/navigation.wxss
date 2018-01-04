@@ -1,0 +1,2 @@
+/* pages/map//navigation_bus/navigation.wxss */
+@import "/pages/common/navigation/navigation.wxss";

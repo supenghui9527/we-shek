@@ -44,7 +44,7 @@ Page({
         data.community[i].type = ['党课', '支委会', '党员大会', '党小组会'];
       }
       if (this.data.pageIndex > 1) {
-        var publishs = this.data.community.concat(data.community);
+        var publishs = [...this.data.community, ...data.community];
       }
       this.setData({
         community: publishs ? publishs : data.community,

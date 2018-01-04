@@ -1,11 +1,39 @@
 <!--pages/map/map.wxml-->
-<map class="{{showDetail?'map_height:':''}}" id="map" longitude="{{centerX}}" latitude="{{centerY}}" scale="12" controls="{{showDetail?controls:''}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location ></map>
-<view wx:if="{{showDetail}}" class='go_detail'>
-  <view>
-    <view>
-      <view>{{detail.positionAddress}}</view>
-      <view>{{distance}}</view>
-    </view>
-  </view>
-  <view catchtap='goDetail' class='btn'>详情></view>
-</view>
+<map id="map" longitude="{{centerX}}" latitude="{{centerY}}" scale="15" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location="{{true}}"></map>
+<cover-view class='select_position' catchtap='showList'>{{showPosition}}</cover-view>
+<cover-view wx:if="{{showLists}}" class='select_lists'>
+  <block>
+    <cover-view wx:for="{{positionLists}}" data-index="{{index}}" data-item="{{item}}" catchtap='selectPosition' wx:key="index">{{item}}</cover-view>
+  </block>
+</cover-view>
+<cover-view style="max-height:{{detailHeight}}" class='detaiL_list'> 
+  <block>
+    <cover-view wx:for="{{detailList}}" wx:for-index="idx" wx:key="{{index}}">
+      <cover-view data-index="{{idx}}" catchtap='showItems' class='active_item'>
+        <cover-image wx:if="{{item.type==1}}" src='/images/01.png'></cover-image>
+        <cover-image wx:elif="{{item.type==2}}" src='/images/02.png'></cover-image>
+        <cover-image wx:elif="{{item.type==3}}" src='/images/03.png'></cover-image>
+        <cover-image wx:elif="{{item.type==4}}" src='/images/04.png'></cover-image>
+        <cover-image wx:elif="{{item.type==5}}" src='/images/05.png'></cover-image>
+        <cover-image wx:elif="{{item.type==6}}" src='/images/06.png'></cover-image>
+        <cover-view>{{item.typeName}}</cover-view>
+        <cover-view style='padding-left:50rpx'>{{item.count}}</cover-view>
+      </cover-view>
+      <cover-view wx:if="{{idx==active}}" class='detaiL_item' data-id="{{i.id}}" wx:for="{{item.positionList}}" wx:key="{{i}}" wx:for-item="i" catchtap="markertap">{{i.positionName}}</cover-view>
+    </cover-view>
+  </block>
+</cover-view>
+<!-- 导航 -->
+<cover-view hidden="{{!showDetail}}" class="route">
+  <cover-image catchtap="controltap" src="/images/route.png"></cover-image>
+</cover-view>
+<!-- 底部详情 -->
+<cover-view wx:if="{{showDetail}}" class='go_detail'>
+  <cover-view class="detail_content">
+    <cover-view>
+      <cover-view>{{detail.positionAddress}}</cover-view>
+      <cover-view>{{distance}}</cover-view>
+    </cover-view>
+  </cover-view>
+  <cover-view catchtap='goDetail' class='btn'>详情></cover-view>
+</cover-view>

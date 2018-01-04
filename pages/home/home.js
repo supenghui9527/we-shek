@@ -29,6 +29,14 @@ Page({
         });
       }
     });
+    // 月末25号提示未完成任务
+    if (new Date().getDate() >= 25) this.getUnfinished();
+    if (new Date().getDate() >= 1 && new Date().getDate() <= 5) wx.showModal({
+      title: '请及时添加近期工作',
+      content: '',
+      showCancel: false,
+      confirmText: '我知道了'
+    })
   },
   onShareAppMessage: function (res) {
     if (res.from === 'button') {
@@ -46,6 +54,31 @@ Page({
         // 转发失败
       }
     }
+  },
+  //获取未完成工作
+  getUnfinished() {
+    getApp().$ajax({
+      httpUrl: getApp().api.getUnfinishedUrl,
+      data: {
+        orgID: this.data.userID
+      }
+    }).then(({ data }) => {
+      let newList = [];
+      if (data.state == 0) {
+        if (data.orgList&&data.orgList.length >= 10) newList = data.orgList.slice(0, 10);
+        this.setData({
+          Unfinished: data.content,
+          UnfinishedLists: newList,
+          showUnfinished: true
+        })
+      }
+      wx.hideLoading();
+    })
+  },
+  hideUnfinished() {
+    this.setData({
+      showUnfinished: false
+    })
   },
   //获取数据方法
   getData(pageNub, cType, meetingType) {
@@ -120,7 +153,7 @@ Page({
         for (let i = 0; i < data.community.length; i++) {
           data.community[i].isDetail = true;
         }
-        const publishs = this.data.community.concat(data.community);
+        const publishs = [...this.data.community, ...data.community];
         this.setData({
           community: publishs
         })

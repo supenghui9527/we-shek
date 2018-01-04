@@ -2,15 +2,27 @@
 <import src="../common/listItem/listItem.wxml" />
 <import src="../common/footbar/footbar.wxml" />
 <view class="home">
+  <view wx:if="{{showUnfinished}}" class="show_points">
+    <view>您的{{Unfinished}}任务未完成！</view>
+    <view wx:if="{{UnfinishedLists.length>0}}">
+      <view wx:for="{{UnfinishedLists}}" wx:key="index">
+        <text>{{item.orgName}}</text>
+        <text>{{item.content}}任务未完成！</text>
+      </view>
+    </view>
+    <button catchtap="hideUnfinished">我知道了</button>
+  </view>
   <!--发帖入口-->
   <view class="publish">
-    <image catchtap="goPublish" data-posttype="1" hidden="{{show ? false : true}}" src="/images/btn2.png"></image>
-    <image hidden="{{show ? false : true}}" data-posttype="0" src="/images/btn3.png" catchtap="goPublish"></image>
+    <image catchtap="goPublish" data-meettype="0" data-posttype="0" hidden="{{show ? false : true}}" src="/images/01-1.png"></image>
+    <image catchtap="goPublish" data-meettype="3" data-posttype="0" hidden="{{show ? false : true}}" src="/images/03-1.png"></image>
+    <image catchtap="goPublish" data-meettype="1" data-posttype="0" hidden="{{show ? false : true}}" src="/images/04-1.png"></image>
+    <image catchtap="goPublish" data-meettype="2" data-posttype="0" hidden="{{show ? false : true}}" src="/images/02-1.png"></image>
     <image catchtap="onAnimate" class="{{show==true?'animate':'backAnimate'}}" src="/images/btn1.png"></image>
   </view>
   <!--tab切换-->
   <view class="nav" style="background-color: rgb(202,67,65)">
-    <block wx:for="{{nav}}" wx:key="*this">
+    <block wx:for="{{nav}}" wx:key="index">
       <view wx:if="{{currentTab==0}}" bindtap="navbar" class="{{currentTab==index?'active':''}}" data-current="{{index}}">{{item}}</view>
       <view wx:elif="{{currentTab!=0}}" bindtap="navbar" class="{{currentTab==index?'active2':''}}" data-current="{{index}}">{{item}}</view>
     </block>
@@ -18,16 +30,15 @@
   </view>
   <view style="height:90rpx;width:100%"></view>
   <!--全部列表-->
-  <!-- <button open-type='share'>测试分享</button> -->
   <view class="list-container">
     <swiper wx:if="{{currentTab==0&&!searchShow}}" indicator-dots="true" interval="5000" autoplay="{true" style="width:100%;height:400rpx;">
-      <block wx:for="{{communityTop}}" wx:key="*this">
-         <swiper-item>
+      <block wx:for="{{communityTop}}" wx:key="index">
+        <swiper-item>
           <image data-cid="{{item.cID}}" data-ctype="{{item.cType}}" catchtap="goDetail" mode="aspectFill" style="width:100%;height:100%" src="{{item.thumbnailPic+item.picNames[0]}}"></image>
-        </swiper-item> 
+        </swiper-item>
       </block>
     </swiper>
-    <block wx:for="{{community}}" wx:key="*this" wx:for-item="item" wx:for-index="index">
+    <block wx:for="{{community}}" wx:key="index" wx:for-item="item" wx:for-index="index">
       <template data-index="{{index}}" is="listItem" data="{{...item}}" />
     </block>
     <view style="height:200rpx;width:100%"></view>
